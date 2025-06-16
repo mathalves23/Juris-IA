@@ -1,0 +1,96 @@
+# Pastas que não devem ser processadas pelo Netlify
+src/
+backend/
+tests/
+docs/
+backups/
+logs/
+temp/
+uploads/
+venv/
+instance/
+migrations/
+node_modules/
+__pycache__/
+
+# Arquivos de configuração do servidor Python
+*.py
+!frontend/src/**/*.py
+
+# Arquivos de documentação (exceto README.md)
+*.md
+!README.md
+
+# Scripts de deploy e configuração
+*.sh
+deploy*.js
+setup*.py
+init*.py
+create*.py
+test*.py
+verify*.py
+
+# Arquivos de configuração diversos
+*.toml.bak
+*.json.bak
+*.yaml
+*.yml
+requirements.txt
+Dockerfile
+docker-compose.yml
+Procfile
+app.json
+render.yaml
+
+# Arquivos de status e relatórios
+STATUS*.md
+DEPLOY*.md
+IMPLEMENTACOES*.md
+FEATURES*.md
+DEVELOPMENT*.md
+REVISAO*.md
+SOLUCAO*.md
+CORS*.md
+*.pdf
+
+# Arquivos de ambiente e configuração
+.env
+.env.*
+config.py
+local_settings.py
+
+# Arquivos de cache e build temporário
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+dist/
+build/
+!frontend/build/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+
+# Dependências Python
+requirements.txt
+Pipfile
+Pipfile.lock
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de backup
+*.bak
+*.backup
+*.orig
+*.tmp 
