@@ -1,0 +1,372 @@
+.wiki-dashboard {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.wiki-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+  color: white;
+}
+
+.wiki-header h2 {
+  color: white !important;
+  margin-bottom: 8px;
+}
+
+.wiki-header .ant-typography {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.wiki-article-item {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+  background: white;
+  border: 1px solid #f0f0f0;
+}
+
+.wiki-article-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: #1890ff;
+}
+
+.article-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.article-tags {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.categories-tree {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.category-item:hover {
+  background: #f5f5f5;
+}
+
+.popular-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.popular-tags .ant-tag {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.popular-tags .ant-tag:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estatísticas */
+.ant-statistic {
+  text-align: center;
+}
+
+.ant-statistic-title {
+  font-weight: 500;
+  color: #666;
+}
+
+.ant-statistic-content {
+  color: #1890ff;
+}
+
+/* Tabs customizados */
+.ant-tabs-tab {
+  font-weight: 500;
+}
+
+.ant-tabs-tab-active {
+  color: #1890ff !important;
+}
+
+/* Cards */
+.ant-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f0f0;
+}
+
+.ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+  border-radius: 12px 12px 0 0;
+}
+
+.ant-card-head-title {
+  font-weight: 600;
+  color: #262626;
+}
+
+/* Busca */
+.ant-input-search .ant-input-group .ant-input-affix-wrapper {
+  border-radius: 8px 0 0 8px;
+}
+
+.ant-input-search .ant-input-search-button {
+  border-radius: 0 8px 8px 0;
+}
+
+.ant-auto-complete {
+  width: 100%;
+}
+
+/* Lista de artigos */
+.ant-list-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 0;
+}
+
+.ant-list-item:last-child {
+  border-bottom: none;
+}
+
+.ant-list-item-meta-avatar {
+  margin-right: 16px;
+}
+
+.ant-list-item-meta-title {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.ant-list-item-meta-description {
+  color: #666;
+  line-height: 1.5;
+}
+
+.ant-list-item-action {
+  margin-left: 48px;
+}
+
+.ant-list-item-action li {
+  padding: 0 8px;
+}
+
+/* Avatar de categoria */
+.ant-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tags */
+.ant-tag {
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ant-tag:hover {
+  transform: scale(1.05);
+}
+
+/* Badges */
+.ant-badge {
+  font-size: 11px;
+}
+
+.ant-badge-count {
+  background: #1890ff;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Empty states */
+.ant-empty {
+  padding: 32px 16px;
+}
+
+.ant-empty-image {
+  height: 80px;
+  margin-bottom: 16px;
+}
+
+.ant-empty-description {
+  color: #999;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .wiki-header {
+    padding: 24px 16px;
+    text-align: center;
+  }
+  
+  .article-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .article-tags {
+    width: 100%;
+  }
+  
+  .ant-list-item-action {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+  
+  .categories-tree {
+    max-height: 200px;
+  }
+  
+  .wiki-article-item {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .wiki-header {
+    padding: 16px;
+  }
+  
+  .wiki-header h2 {
+    font-size: 20px;
+  }
+  
+  .ant-statistic {
+    padding: 12px;
+  }
+  
+  .popular-tags {
+    justify-content: center;
+  }
+  
+  .ant-card {
+    margin-bottom: 16px;
+  }
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wiki-article-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.ant-card {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Loading states */
+.ant-spin-container {
+  position: relative;
+}
+
+.ant-spin-blur {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Hover effects */
+.category-item {
+  transition: all 0.2s ease;
+}
+
+.category-item:hover {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e6f7ff 100%);
+  border-radius: 6px;
+}
+
+/* Scrollbars */
+.categories-tree::-webkit-scrollbar {
+  width: 4px;
+}
+
+.categories-tree::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.categories-tree::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 2px;
+}
+
+.categories-tree::-webkit-scrollbar-thumb:hover {
+  background: #b1b1b1;
+}
+
+/* Focus states */
+.wiki-article-item:focus-within {
+  outline: 2px solid #1890ff;
+  outline-offset: 2px;
+}
+
+.category-item:focus {
+  outline: 2px solid #1890ff;
+  outline-offset: 2px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .wiki-dashboard {
+    background: #141414;
+  }
+  
+  .ant-card {
+    background: #1f1f1f;
+    border-color: #303030;
+  }
+  
+  .ant-card-head {
+    background: #262626;
+    border-color: #303030;
+  }
+  
+  .wiki-article-item {
+    background: #1f1f1f;
+    border-color: #303030;
+  }
+  
+  .wiki-article-item:hover {
+    border-color: #1890ff;
+    background: #262626;
+  }
+  
+  .category-item:hover {
+    background: #262626;
+  }
+} 

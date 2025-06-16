@@ -1,0 +1,123 @@
+Você irá construir, passo a passo, uma plataforma JurisIA para escritórios de advocacia e departamentos jurídicos, com foco em automação, workflow visual, memória operacional e diferenciação real.
+Siga rigorosamente as etapas abaixo, sem pular nenhuma fase.
+Execute cada instrução de forma sequencial e objetiva.
+Sempre que concluir uma fase, valide o resultado com usuários-alvo e só avance para a próxima após ajustes necessários.
+
+ETAPA 1 – ARQUITETURA E FUNDAMENTAÇÃO
+Defina e documente a arquitetura da solução: backend, frontend, banco de dados relacional, APIs RESTful, autenticação JWT, controle de permissões e logs de auditoria.
+
+Implemente pipeline de versionamento, CI/CD, deploy controlado e rollback.
+
+ETAPA 2 – ESTRUTURAÇÃO DE MODELOS DE DADOS
+Modele, em banco relacional, as seguintes entidades: Usuário, Cliente, Processo, Quadro Kanban, Lista, Cartão/Tarefa, Publicação, Memória Operacional (Wiki), Notificação, Anexo.
+
+Defina os campos obrigatórios, tipos de dados, relações entre tabelas (ex: cada Processo pode ter várias Publicações, cada Quadro várias Listas, cada Lista vários Cartões, etc).
+
+Crie seeds com dados reais simulados para testar o sistema.
+
+ETAPA 3 – AUTENTICAÇÃO E PERMISSÕES
+Implemente sistema de autenticação segura (login, senha, hash, JWT, autenticação multifator opcional).
+
+Configure papéis: Administrador, Gestor, Advogado, Colaborador, cada um com permissões claras (CRUD em clientes, processos, tarefas, quadros, wiki, etc).
+
+Garanta que telas, ações e notificações respeitem essas permissões — dev bloqueia qualquer ação não autorizada.
+
+ETAPA 4 – MÓDULO KANBAN JURÍDICO
+Desenvolva a interface Kanban, permitindo criação de quadros personalizados para clientes, áreas ou projetos.
+
+Permita criação de listas customizáveis dentro de cada quadro (ex: “Novo”, “Para Contestação”, “Protocolo”, “Finalizado”).
+
+Implemente cartões/tarefas:
+ - Criação manual e automática (via publicação/processo)
+ - Campos: título, descrição, processo vinculado, responsável, data limite, checklist, anexos, comentários, histórico de movimentações, etiquetas, status.
+
+Permita drag-and-drop entre listas, atualização automática do status/processo, histórico de movimentações, e confirmação para ações destrutivas (exclusão, conclusão).
+
+ETAPA 5 – AUTOMAÇÃO DE PUBLICAÇÕES, PRAZOS E TAREFAS
+Programe robôs de scraping para captar publicações em tribunais (PJe, Projudi, e-SAJ, eproc, etc.), com fallback para revisão manual em caso de erro/captcha.
+
+Implemente parser de texto (NLP, regex, machine learning) para extrair: tipo de andamento, prazos, termo inicial, responsável, eventos previstos, link ao processo/cliente.
+
+Realize OCR em PDFs quando necessário.
+
+Gere tarefas automaticamente no Kanban, com prazo correto, checklist sugerido, responsável designado, alerta antecipado por notificação.
+
+ETAPA 6 – MEMÓRIA OPERACIONAL (WIKI JURÍDICA)
+Implemente módulo Wiki:
+ - Permita cadastro de teses, modelos, argumentos, lições aprendidas, pareceres, dicas, precedentes internos, orientações estratégicas.
+ - Campos: título, categoria, tags, texto, vínculo com processos/cartões, autor, data, comentários, versão, status (ativo/obsoleto).
+
+Disponibilize busca avançada, filtros, ranking de uso/efetividade.
+
+Integre a Wiki ao Kanban e à IA: ao abrir tarefa/processo, sugira conteúdo relevante do histórico.
+
+ETAPA 7 – GERAÇÃO DE PETIÇÃO AUTOMÁTICA POR IA
+Permita upload de modelos, categorização e uso de variáveis dinâmicas.
+
+Treine IA para aprender com peças anteriores do escritório (exemplo: estilo, estrutura, teses favoritas).
+
+Ao criar tarefa/prazo relevante, gere rascunho automático da petição, preenchendo com dados e argumentos adequados, sugerindo checklist de revisão.
+
+Disponibilize editor WYSIWYG, exportação para PDF/DOC, controle de versões e marcação de campos obrigatórios.
+
+Garanta que o usuário possa editar livremente o texto sugerido antes de protocolar.
+
+ETAPA 8 – NOTIFICAÇÕES E ALERTAS
+Implemente painel central de notificações (push, e-mail, WhatsApp, painel web) para:
+ - Novos prazos/tarefas
+ - Tarefas atribuídas
+ - Comentários/menções
+ - Conteúdo novo na Wiki
+ - Falhas de scraping/processamento
+
+Permita silenciar/adiar notificações, marque leitura, mantenha logs de envio e abertura.
+
+ETAPA 9 – DASHBOARD, RELATÓRIOS E PRODUTIVIDADE
+Crie dashboard inicial com:
+ - Prazos próximos
+ - Tarefas em atraso
+ - Quadros favoritos
+ - Notificações recentes
+
+Gere relatórios customizáveis: produtividade, performance, tarefas concluídas, histórico de movimentações, exportação PDF/Excel, comparativos por área/advogado/cliente.
+
+ETAPA 10 – ONBOARDING E SUPORTE
+Implemente onboarding guiado: wizard interativo, importação facilitada de dados (PJe/planilha), sugestão de templates de quadros/listas, vídeo/gif de demonstração.
+
+Disponibilize base de conhecimento acessível, FAQ dinâmico e IA para dúvidas frequentes.
+
+Garanta canal de suporte rápido para bugs, sugestões e dúvidas.
+
+ETAPA 11 – SEGURANÇA, LGPD, AUDITORIA E MONITORAMENTO
+Garanta LGPD: consentimento, painel de anonimização/exportação de dados, logs de acesso, histórico de modificações, alerta de uso suspeito.
+
+Monitore erros técnicos, registre logs detalhados, implemente painel técnico para acompanhamento, permita exportação de logs para auditoria externa.
+
+ETAPA 12 – LANDING PAGE E COPY
+Crie landing page clara e persuasiva:
+ - Proposta de valor em até 2 linhas acima da dobra (“Automatize sua advocacia e ganhe tempo para o que importa. Capte prazos, organize processos e crie petições automaticamente — tudo em uma plataforma visual e inteligente.”)
+ - Subheadline emocional (“Chega de perder tempo com tarefas manuais...”)
+ - CTA destacado (“Experimente gratuitamente”)
+ - GIF/vídeo mostrando diferencial visual do produto
+ - 4 diferenciais em ícones (Kanban, Automação, IA no seu estilo, Memória Operacional)
+ - Depoimentos/resultados reais
+ - Passo a passo visual do funcionamento
+ - Rodapé enxuto com links essenciais
+ - Copywriting orientado à dor do advogado e benefício prático
+
+ETAPA 13 – API, INTEGRAÇÃO E ADD-ONS FUTUROS
+Documente e implemente API RESTful clara, endpoints seguros, payloads de exemplo, contratos front/back detalhados.
+
+Estruture plataforma para integração fácil de módulos extras (agenda, financeiro, contratos, comunicação, BI, etc.), sem sobrecarregar a experiência do MVP.
+
+Prepare documentação para add-ons, com exemplos de fluxos, schemas e permissões.
+
+ETAPA 14 – TESTES DE USABILIDADE, FEEDBACK E EVOLUÇÃO
+Realize teste de onboarding, usabilidade de quadros/listas/cartões, criação e movimentação de tarefas, uso da memória operacional, geração de petição automática, recebimento de notificações, relatórios, fluxo de erro (campos obrigatórios, permissões negadas, falha técnica).
+
+Coleta feedback de pelo menos 3 perfis reais (advogado, gestor, colaborador), ajuste conforme travas/dúvidas identificadas, itere rapidamente.
+
+ETAPA 15 – DEPLOY, MONITORAMENTO, SUPORTE E RELEASE NOTES
+Realize deploy seguro, backup regular, monitore estabilidade, disponibilize changelog de atualizações para usuários e mantenha canal de suporte ativo.
+
+Siga as etapas rigorosamente. Valide sempre com usuário final antes de avançar. Priorize usabilidade, automação real, integração visual Kanban, personalização de IA e diferenciação de mercado. Mantenha o MVP enxuto, mas com experiência inovadora, documentação clara, arquitetura pronta para escalar, logs, permissões e suporte à evolução contínua.

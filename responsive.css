@@ -1,0 +1,161 @@
+/* Estilos responsivos para o Editor IA */
+
+/* Estilos base para todos os dispositivos */
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --secondary-color: #f3f4f6;
+  --text-color: #111827;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+}
+
+/* Ajustes para telas pequenas (smartphones) */
+@media (max-width: 640px) {
+  /* Ajustes gerais */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ajustes para o editor */
+  .ql-editor {
+    min-height: 200px !important;
+  }
+  
+  /* Ajustes para formulários */
+  input, select, textarea {
+    font-size: 16px !important; /* Evita zoom automático em iOS */
+  }
+  
+  /* Ajustes para botões em barras de ação */
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .action-buttons button {
+    width: 100%;
+  }
+  
+  /* Ajustes para cards e listas */
+  .card-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Ajustes para navegação */
+  .mobile-nav {
+    display: block;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+  
+  /* Ajustes para o painel de IA */
+  .ai-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    border-radius: 1rem 1rem 0 0;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+/* Ajustes para tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Ajustes para o editor */
+  .ql-editor {
+    min-height: 300px !important;
+  }
+  
+  /* Ajustes para cards e listas */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Ajustes para telas de toque */
+@media (hover: none) {
+  /* Aumentar área de toque para elementos interativos */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Ajustes para o editor Quill em dispositivos touch */
+  .ql-toolbar button {
+    padding: 6px !important;
+  }
+}
+
+/* Ajustes para modo escuro (se implementado) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary-color: #1f2937;
+    --text-color: #f9fafb;
+    --text-light: #9ca3af;
+    --border-color: #374151;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --error-color: #dc2626;
+  }
+  
+  /* Outros ajustes para modo escuro */
+}
+
+/* Ajustes de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Classes utilitárias responsivas */
+.hide-on-mobile {
+  display: none !important;
+}
+
+@media (min-width: 640px) {
+  .hide-on-mobile {
+    display: initial !important;
+  }
+  
+  .show-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Ajustes para impressão */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    color: #000;
+    background-color: #fff;
+  }
+  
+  .document-content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}

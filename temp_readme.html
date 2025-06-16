@@ -1,0 +1,667 @@
+
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JurisIA - Documentação</title>
+        
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+        }
+        
+        h1 {
+            color: #1e40af;
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #1e40af;
+            font-size: 1.8em;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #93c5fd;
+            padding-bottom: 0.3rem;
+        }
+        
+        h3 {
+            color: #1d4ed8;
+            font-size: 1.3em;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        code {
+            background: #f1f5f9;
+            color: #0f172a;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #0f172a;
+            color: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.3rem;
+        }
+        
+        strong {
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        em {
+            color: #7c3aed;
+            font-style: italic;
+        }
+        
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+            page-break-inside: avoid;
+        }
+        
+        @page {
+            margin: 2cm;
+            size: A4;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e5e7eb;
+            margin: 2rem 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #3b82f6;
+            background: #eff6ff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+    
+    </head>
+    <body>
+        <h1>🏛️ JurisIA - Plataforma Jurídica com Inteligência Artificial</h1>
+<br>
+<p>Uma plataforma completa de Software como Serviço (SaaS) desenvolvida especificamente para escritórios de advocacia e profissionais do direito, oferecendo automação de processos, inteligência artificial e gestão completa de documentos jurídicos.</p>
+<br>
+<h2>📋 Índice</h2>
+<br>
+<ul><li><a href="#-o-que-é-esta-aplicação">O que é esta aplicação?</a></li>
+<li><a href="#-principais-funcionalidades">Principais Funcionalidades</a></li>
+<li><a href="#-tecnologias-utilizadas">Tecnologias Utilizadas</a></li>
+<li><a href="#-pré-requisitos">Pré-requisitos</a></li>
+<li><a href="#-como-rodar-localmente">Como Rodar Localmente</a></li>
+<li><a href="#-estrutura-do-projeto">Estrutura do Projeto</a></li>
+<li><a href="#-configurações-de-ambiente">Configurações de Ambiente</a></li>
+<li><a href="#-api-e-endpoints">API e Endpoints</a></li>
+<li><a href="#-interface-do-usuário">Interface do Usuário</a></li>
+<li><a href="#-funcionalidades-de-ia">Funcionalidades de IA</a></li>
+<li><a href="#-sistema-de-autenticação">Sistema de Autenticação</a></li>
+<li><a href="#-planos-e-assinaturas">Planos e Assinaturas</a></li>
+<li><a href="#-contribuição">Contribuição</a></li>
+<li><a href="#-licença">Licença</a></li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>🤔 O que é esta aplicação?</h2>
+<br>
+<p>Imagine um <strong>assistente digital completo</strong> para advogados e escritórios de advocacia. Esta plataforma SaaS (Software as a Service) funciona como uma <strong>central de comando</strong> que ajuda profissionais do direito a:</p>
+<br>
+<ul><li><strong>Automatizar tarefas repetitivas</strong> como criação de documentos</li>
+<li><strong>Organizar e gerenciar</strong> todos os casos e clientes</li>
+<li><strong>Usar inteligência artificial</strong> para análise de documentos e pesquisa jurídica</li>
+<li><strong>Controlar prazos</strong> e compromissos importantes</li>
+<li><strong>Gerar relatórios</strong> e estatísticas do escritório</li>
+<br>
+<p></ul>É como ter um <strong>escritório digital completo</strong> que funciona 24/7, acessível de qualquer lugar do mundo através do navegador.</p>
+<br>
+<p>---</p>
+<br>
+<h2>⭐ Principais Funcionalidades</h2>
+<br>
+<h3>🤖 <strong>Inteligência Artificial Integrada</strong></h3>
+<ul><li><strong>Análise automática de contratos</strong> e documentos jurídicos</li>
+<li><strong>Geração de peças processuais</strong> baseada em modelos e IA</li>
+<li><strong>Pesquisa jurídica inteligente</strong> com sugestões contextuais</li>
+<li><strong>Revisão automática</strong> de documentos para identificar inconsistências</li>
+<br>
+</ul><h3>📁 <strong>Gestão de Documentos</strong></h3>
+<ul><li><strong>Upload e organização</strong> de documentos por cliente/caso</li>
+<li><strong>Controle de versões</strong> automático</li>
+<li><strong>Busca avançada</strong> por conteúdo, tags ou metadados</li>
+<li><strong>Exportação</strong> em múltiplos formatos (PDF, DOCX)</li>
+<br>
+</ul><h3>👥 <strong>Gestão de Clientes e Casos</strong></h3>
+<ul><li><strong>Cadastro completo</strong> de clientes e casos</li>
+<li><strong>Histórico detalhado</strong> de todas as interações</li>
+<li><strong>Sistema de tags</strong> para categorização</li>
+<li><strong>Dashboard</strong> com visão geral de todos os casos</li>
+<br>
+</ul><h3>⏰ <strong>Controle de Prazos e Agenda</strong></h3>
+<ul><li><strong>Calendário integrado</strong> com compromissos jurídicos</li>
+<li><strong>Alertas automáticos</strong> para prazos processuais</li>
+<li><strong>Notificações</strong> por email e na plataforma</li>
+<li><strong>Sincronização</strong> com calendários externos</li>
+<br>
+</ul><h3>📊 <strong>Relatórios e Analytics</strong></h3>
+<ul><li><strong>Dashboards interativos</strong> com métricas do escritório</li>
+<li><strong>Relatórios personalizados</strong> de produtividade</li>
+<li><strong>Análise de tempo</strong> gasto por cliente/caso</li>
+<li><strong>Estatísticas financeiras</strong> e de performance</li>
+<br>
+</ul><h3>🔐 <strong>Segurança e Compliance</strong></h3>
+<ul><li><strong>Autenticação JWT</strong> com tokens seguros</li>
+<li><strong>Controle de acesso</strong> baseado em papéis (admin, user)</li>
+<li><strong>Logs de auditoria</strong> de todas as ações</li>
+<li><strong>Backup automático</strong> dos dados</li>
+<li><strong>Conformidade com LGPD</strong> (Lei Geral de Proteção de Dados)</li>
+<br>
+</ul><h3>⚙️ <strong>Sistema de Configurações Avançado</strong></h3>
+<ul><li><strong>Ambientes separados</strong> para teste e produção</li>
+<li><strong>Feature flags</strong> para habilitar/desabilitar funcionalidades</li>
+<li><strong>Configurações personalizáveis</strong> por usuário/escritório</li>
+<li><strong>Limites dinâmicos</strong> de documentos e usuários</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>🛠️ Tecnologias Utilizadas</h2>
+<br>
+<h3><strong>Backend (Servidor)</strong></h3>
+<ul><li><strong>Python 3.10+</strong> - Linguagem de programação principal</li>
+<li><strong>Flask</strong> - Framework web minimalista e poderoso</li>
+<li><strong>SQLAlchemy</strong> - ORM para gerenciamento do banco de dados</li>
+<li><strong>Flask-JWT-Extended</strong> - Autenticação e autorização</li>
+<li><strong>SQLite</strong> - Banco de dados (desenvolvimento)</li>
+<li><strong>PostgreSQL</strong> - Banco de dados (produção)</li>
+<br>
+</ul><h3><strong>Frontend (Interface)</strong></h3>
+<ul><li><strong>React 18</strong> - Biblioteca para interfaces dinâmicas</li>
+<li><strong>TypeScript</strong> - JavaScript com tipagem estática</li>
+<li><strong>Vite</strong> - Ferramenta de build ultra-rápida</li>
+<li><strong>Tailwind CSS</strong> - Framework CSS utilitário</li>
+<li><strong>Axios</strong> - Cliente HTTP para API</li>
+<br>
+</ul><h3><strong>Inteligência Artificial</strong></h3>
+<ul><li><strong>OpenAI GPT</strong> - Modelos de linguagem avançados</li>
+<li><strong>Processamento de Linguagem Natural</strong> (NLP)</li>
+<li><strong>Machine Learning</strong> para análise de documentos</li>
+<br>
+</ul><h3><strong>Infraestrutura</strong></h3>
+<ul><li><strong>Docker</strong> - Containerização da aplicação</li>
+<li><strong>Nginx</strong> - Servidor web e proxy reverso</li>
+<li><strong>Redis</strong> - Cache e sessões</li>
+<li><strong>AWS/GCP</strong> - Cloud hosting (produção)</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>📋 Pré-requisitos</h2>
+<br>
+<p>Antes de começar, você precisa ter instalado em sua máquina:</p>
+<br>
+<h3><strong>Obrigatórios:</strong></h3>
+<ul><li><strong>Python 3.10 ou superior</strong> (<a href="https://python.org/downloads/">Download aqui</a>)</li>
+<li><strong>Node.js 18 ou superior</strong> (<a href="https://nodejs.org/">Download aqui</a>)</li>
+<li><strong>Git</strong> (<a href="https://git-scm.com/">Download aqui</a>)</li>
+<br>
+</ul><h3><strong>Opcionais (mas recomendados):</strong></h3>
+<ul><li><strong>Visual Studio Code</strong> - Editor de código</li>
+<li><strong>Docker</strong> - Para containerização</li>
+<li><strong>Postman</strong> - Para testar APIs</li>
+<br>
+</ul><h3><strong>Como verificar se está tudo instalado:</strong></h3>
+<pre><code><h1>Verificar Python</h1>
+<p>python --version  # ou python3 --version</p>
+<br>
+<h1>Verificar Node.js</h1>
+<p>node --version</p>
+<br>
+<h1>Verificar npm</h1>
+<p>npm --version</p>
+<br>
+<h1>Verificar Git</h1>
+<p>git --version</code></pre></p>
+<br>
+<p>---</p>
+<br>
+<h2>🚀 Como Rodar Localmente</h2>
+<br>
+<h3><strong>Passo 1: Clonar o Repositório</strong></h3>
+<pre><code><h1>Clone o projeto</h1>
+<p>git clone <url-do-repositorio></p>
+<br>
+<h1>Entre na pasta do projeto</h1>
+<p>cd "JurisIA"</code></pre></p>
+<br>
+<h3><strong>Passo 2: Configurar o Backend (Servidor)</strong></h3>
+<br>
+<pre><code><h1>Criar ambiente virtual Python</h1>
+<p>python -m venv venv</p>
+<br>
+<h1>Ativar o ambiente virtual</h1>
+<h1>No macOS/Linux:</h1>
+<p>source venv/bin/activate</p>
+<h1>No Windows:</h1>
+<p>venv\Scripts\activate</p>
+<br>
+<h1>Instalar dependências Python</h1>
+<p>pip install --registry=https://registry.npmjs.org/ -r requirements.txt</code></pre></p>
+<br>
+<h3><strong>Passo 3: Configurar o Banco de Dados</strong></h3>
+<pre><code><h1>Configurar variável de ambiente do banco</h1>
+<p>export DATABASE_URL="sqlite:///$(pwd)/src/jurissaas.db"</p>
+<br>
+<h1>Inicializar o banco de dados</h1>
+<p>cd src</p>
+<p>python -c "</p>
+<p>from main import create_app</p>
+<p>from extensions import db</p>
+<p>app = create_app()</p>
+<p>with app.app_context():</p>
+<p>    db.create_all()</p>
+<p>    print('✅ Banco de dados criado!')</p>
+<p>"</code></pre></p>
+<br>
+<h3><strong>Passo 4: Configurar o Frontend (Interface)</strong></h3>
+<pre><code><h1>Voltar para a raiz do projeto</h1>
+<p>cd ..</p>
+<br>
+<h1>Entrar na pasta do frontend</h1>
+<p>cd frontend</p>
+<br>
+<h1>Instalar dependências Node.js</h1>
+<p>npm install --registry=https://registry.npmjs.org/</p>
+<br>
+<h1>Configurar variáveis de ambiente</h1>
+<p>cp .env.example .env.local</p>
+<h1>Edite o arquivo .env.local com suas configurações</h1></code></pre>
+<br>
+<h3><strong>Passo 5: Iniciar a Aplicação</strong></h3>
+<br>
+<p><strong>Terminal 1 - Backend:</strong></p>
+<pre><code><h1>Na pasta raiz do projeto</h1>
+<p>source venv/bin/activate</p>
+<p>export DATABASE_URL="sqlite:///$(pwd)/src/jurissaas.db"</p>
+<p>cd src</p>
+<p>python main.py</code></pre></p>
+<br>
+<p><strong>Terminal 2 - Frontend:</strong></p>
+<pre><code><h1>Na pasta frontend</h1>
+<p>cd frontend</p>
+<p>npm run dev</code></pre></p>
+<br>
+<h3><strong>Passo 6: Acessar a Aplicação</strong></h3>
+<ul><li><strong>Frontend (Interface):</strong> http://localhost:3000</li>
+<li><strong>Backend (API):</strong> http://localhost:5005</li>
+<li><strong>Documentação da API:</strong> http://localhost:5005/docs</li>
+<br>
+</ul><h3><strong>Passo 7: Criar Usuário Administrador</strong></h3>
+<pre><code><h1>Execute este comando para criar um usuário admin</h1>
+<p>cd src</p>
+<p>python -c "</p>
+<p>from main import create_app</p>
+<p>from extensions import db</p>
+<p>from models.user import User</p>
+<p>app = create_app()</p>
+<p>with app.app_context():</p>
+<p>    admin = User(</p>
+<p>        nome='Administrador',</p>
+<p>        email='admin@jurissaas.com',</p>
+<p>        senha='admin123',</p>
+<p>        papel='admin'</p>
+<p>    )</p>
+<p>    db.session.add(admin)</p>
+<p>    db.session.commit()</p>
+<p>    print('✅ Usuário admin criado!')</p>
+<p>    print('📧 Email: admin@jurissaas.com')</p>
+<p>    print('🔑 Senha: admin123')</p>
+<p>"</code></pre></p>
+<br>
+<p>---</p>
+<br>
+<h2>📁 Estrutura do Projeto</h2>
+<br>
+<pre><code>JurisIA/
+<p>├── 📁 src/                          # Backend (Servidor Python)</p>
+<p>│   ├── 📁 models/                   # Modelos do banco de dados</p>
+<p>│   │   ├── user.py                  # Modelo de usuários</p>
+<p>│   │   ├── subscription.py          # Modelo de assinaturas</p>
+<p>│   │   ├── config.py                # Modelo de configurações</p>
+<p>│   │   └── ...</p>
+<p>│   ├── 📁 routes/                   # Rotas da API</p>
+<p>│   │   ├── auth.py                  # Autenticação</p>
+<p>│   │   ├── documents.py             # Gestão de documentos</p>
+<p>│   │   ├── clients.py               # Gestão de clientes</p>
+<p>│   │   └── ...</p>
+<p>│   ├── 📁 services/                 # Serviços e lógica de negócio</p>
+<p>│   │   ├── ai_service.py            # Serviços de IA</p>
+<p>│   │   ├── document_service.py      # Processamento de documentos</p>
+<p>│   │   └── ...</p>
+<p>│   ├── main.py                      # Arquivo principal do servidor</p>
+<p>│   ├── config.py                    # Configurações gerais</p>
+<p>│   └── jurissaas.db                 # Banco de dados SQLite</p>
+<p>│</p>
+<p>├── 📁 frontend/                     # Frontend (Interface React)</p>
+<p>│   ├── 📁 src/</p>
+<p>│   │   ├── 📁 components/           # Componentes React</p>
+<p>│   │   ├── 📁 pages/                # Páginas da aplicação</p>
+<p>│   │   ├── 📁 services/             # Comunicação com API</p>
+<p>│   │   │   ├── api.ts               # Configuração base da API</p>
+<p>│   │   │   ├── authService.ts       # Serviço de autenticação</p>
+<p>│   │   │   └── ...</p>
+<p>│   │   ├── 📁 types/                # Tipos TypeScript</p>
+<p>│   │   └── App.tsx                  # Componente principal</p>
+<p>│   ├── package.json                 # Dependências Node.js</p>
+<p>│   └── vite.config.ts               # Configuração do Vite</p>
+<p>│</p>
+<p>├── 📁 docs/                         # Documentação</p>
+<p>│   ├── config-api.md                # API de configurações</p>
+<p>│   └── ...</p>
+<p>│</p>
+<p>├── 📁 migrations/                   # Migrações do banco</p>
+<p>├── requirements.txt                 # Dependências Python</p>
+<p>├── .env.example                     # Exemplo de variáveis de ambiente</p>
+<p>└── README.md                        # Este arquivo</code></pre></p>
+<br>
+<p>---</p>
+<br>
+<h2>⚙️ Configurações de Ambiente</h2>
+<br>
+<p>A aplicação suporta configurações diferenciadas para <strong>desenvolvimento</strong> (test) e <strong>produção</strong> (prod):</p>
+<br>
+<h3><strong>Ambiente de Desenvolvimento (test):</strong></h3>
+<ul><li>Debug mode ativado</li>
+<li>Limites menores de documentos (100)</li>
+<li>Funcionalidades experimentais habilitadas</li>
+<li>Logs detalhados</li>
+<br>
+</ul><h3><strong>Ambiente de Produção (prod):</strong></h3>
+<ul><li>Debug mode desativado</li>
+<li>Limites maiores de documentos (1000)</li>
+<li>Funcionalidades estáveis</li>
+<li>Rate limiting ativado</li>
+<li>Sessões com timeout configurado</li>
+<br>
+</ul><h3><strong>Configurar via Interface:</strong></h3>
+<pre><code>// Exemplo de uso no frontend
+<p>import { setFlagsFromString, getFlags } from './services/authService';</p>
+<br>
+<p>// Configurar flags de desenvolvimento</p>
+<p>await setFlagsFromString(</p>
+<p>  'debug_mode=true,api_version=v2,max_users=50', </p>
+<p>  'test'</p>
+<p>);</p>
+<br>
+<p>// Obter configurações atuais</p>
+<p>const flags = await getFlags('prod');</code></pre></p>
+<br>
+<p>---</p>
+<br>
+<h2>🔌 API e Endpoints</h2>
+<br>
+<h3><strong>Autenticação</strong></h3>
+<ul><li><code>POST /api/auth/register</code> - Registrar novo usuário</li>
+<li><code>POST /api/auth/login</code> - Fazer login</li>
+<li><code>GET /api/auth/me</code> - Obter dados do usuário logado</li>
+<li><code>POST /api/auth/refresh</code> - Renovar token</li>
+<br>
+</ul><h3><strong>Configurações</strong></h3>
+<ul><li><code>POST /api/auth/set-flags</code> - Configurar flags de ambiente</li>
+<li><code>GET /api/auth/flags</code> - Obter configurações atuais</li>
+<br>
+</ul><h3><strong>Documentos</strong> (em desenvolvimento)</h3>
+<ul><li><code>GET /api/documents</code> - Listar documentos</li>
+<li><code>POST /api/documents</code> - Upload de documento</li>
+<li><code>PUT /api/documents/:id</code> - Atualizar documento</li>
+<li><code>DELETE /api/documents/:id</code> - Excluir documento</li>
+<br>
+</ul><h3><strong>Exemplo de Uso da API:</strong></h3>
+<pre><code><h1>Login</h1>
+<p>curl -X POST http://localhost:5005/api/auth/login \</p>
+<p>  -H "Content-Type: application/json" \</p>
+<p>  -d '{"email":"admin@jurissaas.com","senha":"admin123"}'</p>
+<br>
+<h1>Configurar flags (requer token)</h1>
+<p>curl -X POST http://localhost:5005/api/auth/set-flags \</p>
+<p>  -H "Authorization: Bearer SEU_TOKEN" \</p>
+<p>  -H "Content-Type: application/json" \</p>
+<p>  -d '{"flags":"max_users=100,debug=true","environment":"test"}'</code></pre></p>
+<br>
+<p>---</p>
+<br>
+<h2>🎨 Interface do Usuário</h2>
+<br>
+<h3><strong>Dashboard Principal</strong></h3>
+<ul><li>Visão geral de casos ativos</li>
+<li>Prazos próximos do vencimento</li>
+<li>Estatísticas de produtividade</li>
+<li>Acesso rápido às funcionalidades</li>
+<br>
+</ul><h3><strong>Gestão de Clientes</strong></h3>
+<ul><li>Lista completa de clientes</li>
+<li>Formulários de cadastro intuitivos</li>
+<li>Histórico de interações</li>
+<li>Dados de contato organizados</li>
+<br>
+</ul><h3><strong>Gestão de Documentos</strong></h3>
+<ul><li>Upload por drag-and-drop</li>
+<li>Visualização de documentos</li>
+<li>Sistema de tags e categorias</li>
+<li>Busca avançada por conteúdo</li>
+<br>
+</ul><h3><strong>Configurações</strong></h3>
+<ul><li>Preferências do usuário</li>
+<li>Configurações do escritório</li>
+<li>Gerenciamento de usuários</li>
+<li>Configurações de ambiente</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>🤖 Funcionalidades de IA</h2>
+<br>
+<h3><strong>Análise de Documentos</strong></h3>
+<pre><code><h1>Exemplo de análise automática</h1>
+<p>def analyze_contract(document_content):</p>
+<p>    """</p>
+<p>    Analisa um contrato e extrai informações importantes</p>
+<p>    """</p>
+<p>    ai_analysis = ai_service.analyze_document(document_content)</p>
+<p>    return {</p>
+<p>        'contract_type': ai_analysis.type,</p>
+<p>        'key_clauses': ai_analysis.clauses,</p>
+<p>        'risks': ai_analysis.risks,</p>
+<p>        'suggestions': ai_analysis.suggestions</p>
+<p>    }</code></pre></p>
+<br>
+<h3><strong>Geração de Peças</strong></h3>
+<ul><li>Templates inteligentes para petições</li>
+<li>Preenchimento automático com dados do caso</li>
+<li>Revisão gramatical e jurídica</li>
+<li>Formatação automática segundo normas</li>
+<br>
+</ul><h3><strong>Pesquisa Jurisprudencial</strong></h3>
+<ul><li>Busca em bases de dados jurídicas</li>
+<li>Sugestões baseadas no contexto do caso</li>
+<li>Análise de precedentes</li>
+<li>Resumo automático de decisões</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>🔐 Sistema de Autenticação</h2>
+<br>
+<h3><strong>Níveis de Acesso:</strong></h3>
+<ul><li><strong>Admin:</strong> Acesso total ao sistema</li>
+<li><strong>Superuser:</strong> Acesso avançado com algumas restrições</li>
+<li><strong>User:</strong> Acesso básico às funcionalidades</li>
+<br>
+</ul><h3><strong>Segurança:</strong></h3>
+<ul><li>Tokens JWT com expiração automática</li>
+<li>Refresh tokens para renovação segura</li>
+<li>Rate limiting para prevenir ataques</li>
+<li>Logs de auditoria de todas as ações</li>
+<br>
+</ul><h3><strong>Exemplo de Uso:</strong></h3>
+<pre><code>// Login
+<p>const response = await login('email@exemplo.com', 'senha123');</p>
+<p>localStorage.setItem('token', response.access_token);</p>
+<br>
+<p>// Verificar se o usuário está logado</p>
+<p>const isValid = await verifyToken(token);</code></pre></p>
+<br>
+<p>---</p>
+<br>
+<h2>💰 Planos e Assinaturas</h2>
+<br>
+<h3><strong>Plano Básico (Trial)</strong></h3>
+<ul><li>10 documentos por mês</li>
+<li>Funcionalidades básicas</li>
+<li>Suporte por email</li>
+<li>1 usuário</li>
+<br>
+</ul><h3><strong>Plano Editor IA</strong></h3>
+<ul><li>100 documentos por mês</li>
+<li>IA para análise de documentos</li>
+<li>Geração automática de peças</li>
+<li>Até 5 usuários</li>
+<br>
+</ul><h3><strong>Plano Completo</strong></h3>
+<ul><li>Documentos ilimitados</li>
+<li>Todas as funcionalidades de IA</li>
+<li>API para integrações</li>
+<li>Suporte prioritário</li>
+<li>Usuários ilimitados</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>🐛 Solução de Problemas Comuns</h2>
+<br>
+<h3><strong>Erro de Conexão com o Banco:</strong></h3>
+<pre><code><h1>Verificar se o banco foi criado</h1>
+<p>ls -la src/jurissaas.db</p>
+<br>
+<h1>Recriar o banco se necessário</h1>
+<p>rm src/jurissaas.db</p>
+<p>cd src && python -c "from main import create_app; from extensions import db; app = create_app(); app.app_context().push(); db.create_all()"</code></pre></p>
+<br>
+<h3><strong>Erro de Porta em Uso:</strong></h3>
+<pre><code><h1>Verificar processos na porta 5005</h1>
+<p>lsof -i :5005</p>
+<br>
+<h1>Matar processo se necessário</h1>
+<p>kill -9 <PID></code></pre></p>
+<br>
+<h3><strong>Erro de Dependências:</strong></h3>
+<pre><code><h1>Reinstalar dependências Python</h1>
+<p>pip install --upgrade -r requirements.txt</p>
+<br>
+<h1>Reinstalar dependências Node.js</h1>
+<p>cd frontend && rm -rf node_modules && npm install</code></pre></p>
+<br>
+<p>---</p>
+<br>
+<h2>📈 Próximas Funcionalidades</h2>
+<br>
+<ul><li>[ ] <strong>Integração com tribunais</strong> para consulta processual</li>
+<li>[ ] <strong>App mobile</strong> para iOS e Android</li>
+<li>[ ] <strong>Integração com WhatsApp</strong> para atendimento</li>
+<li>[ ] <strong>Sistema de faturamento</strong> integrado</li>
+<li>[ ] <strong>Relatórios avançados</strong> com BI</li>
+<li>[ ] <strong>API pública</strong> para integrações</li>
+<li>[ ] <strong>Backup na nuvem</strong> automático</li>
+<li>[ ] <strong>Assinatura digital</strong> de documentos</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>🤝 Contribuição</h2>
+<br>
+<p>Quer contribuir com o projeto? Siga estes passos:</p>
+<br>
+<li><strong>Fork</strong> o repositório</li>
+<li><strong>Crie uma branch</strong> para sua funcionalidade (<code>git checkout -b feature/nova-funcionalidade</code>)</li>
+<li><strong>Commit</strong> suas mudanças (<code>git commit -m 'Adiciona nova funcionalidade'</code>)</li>
+<li><strong>Push</strong> para a branch (<code>git push origin feature/nova-funcionalidade</code>)</li>
+<li><strong>Abra um Pull Request</strong></li>
+<br>
+<h3><strong>Diretrizes:</strong></h3>
+<ul><li>Escreva testes para novas funcionalidades</li>
+<li>Mantenha o código bem documentado</li>
+<li>Siga os padrões de codificação do projeto</li>
+<li>Atualize a documentação quando necessário</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>📄 Licença</h2>
+<br>
+<p>Este projeto está licenciado sob a <a href="LICENSE">MIT License</a> - veja o arquivo LICENSE para detalhes.</p>
+<br>
+<p>---</p>
+<br>
+<h2>💬 Suporte e Contato</h2>
+<br>
+<ul><li><strong>📧 Email:</strong> suporte@jurissaas.com</li>
+<li><strong>💬 Chat:</strong> Disponível na plataforma</li>
+<li><strong>📚 Documentação:</strong> https://docs.jurissaas.com</li>
+<li><strong>🐛 Bugs:</strong> Abra uma issue no GitHub</li>
+<br>
+<p></ul>---</p>
+<br>
+<h2>🎉 Agradecimentos</h2>
+<br>
+<p>Agradecemos a todos os advogados e profissionais do direito que contribuíram com feedback e sugestões para tornar esta plataforma uma realidade!</p>
+<br>
+<p>---</p>
+<br>
+<p><strong>⚡ Feito com ❤️ para revolucionar o mundo jurídico através da tecnologia!</strong> </p>
+    </body>
+    </html>
+    

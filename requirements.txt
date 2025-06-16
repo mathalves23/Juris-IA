@@ -1,0 +1,197 @@
+# Framework principal
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# Banco de dados
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.5
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.21
+
+# Autenticação e Segurança
+Flask-JWT-Extended==4.6.0
+Flask-Bcrypt==1.0.1
+Flask-Login==0.6.3
+bcrypt==4.0.1
+cryptography==41.0.4
+PyJWT==2.8.0
+
+# CORS e API
+Flask-CORS==4.0.0
+Flask-RESTful==0.3.10
+
+# Configuração
+python-dotenv==1.0.0
+
+# Cache e Performance
+redis==5.0.1
+Flask-Caching==2.1.0
+
+# Documentos e PDFs
+python-docx==0.8.11
+PyPDF2==3.0.1
+reportlab==4.0.4
+weasyprint==60.0
+markdown==3.5
+
+# IA e OpenAI - Versão atualizada
+openai==1.86.0
+tiktoken==0.5.1
+
+# Validação e Formatação
+email-validator==2.0.0
+phonenumbers==8.13.19
+python-dateutil==2.8.2
+
+# Logs e Monitoramento
+structlog==23.1.0
+prometheus-client==0.17.1
+sentry-sdk[flask]==1.32.0
+
+# Testes
+pytest==7.4.2
+pytest-flask==1.2.0
+pytest-cov==4.1.0
+pytest-mock==3.11.1
+factory-boy==3.3.0
+faker==19.6.1
+Flask-Testing==0.8.1
+
+# Rate Limiting
+Flask-Limiter==3.5.0
+
+# Servidor de produção
+gunicorn==21.2.0
+eventlet==0.33.3
+
+# Utilitários
+requests==2.31.0
+click==8.1.7
+python-magic==0.4.27
+Pillow==10.0.0
+bleach==6.0.0
+
+# Serialização
+marshmallow==3.20.1
+marshmallow-sqlalchemy==0.29.0
+
+# CLI e Deploy
+typer==0.9.0
+rich==13.5.2
+
+# Desenvolvimento
+black==23.7.0
+flake8==6.0.0
+isort==5.12.0
+pre-commit==3.4.0
+
+# Processamento de dados
+pandas==2.1.1
+numpy==1.25.2
+
+# Templates e HTML
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+
+# Timezone
+pytz==2023.3
+
+# Environment
+python-environ==0.4.54
+
+# Background tasks (opcional)
+celery==5.3.1
+
+# Backup e compressão
+zipfile36==0.1.3
+
+# Healthcheck
+flask-healthz==0.0.3
+
+# Novas dependências
+boto3==1.34.0
+psutil==5.9.8
+schedule==1.2.1
+
+# Cache Redis
+redis-py-cluster==2.1.3
+hiredis==2.2.3
+
+# Cloud Storage
+botocore==1.34.0
+google-cloud-storage==2.10.0
+google-auth==2.23.4
+google-cloud-core==2.3.3
+
+# Otimização de Imagens
+Pillow==10.1.0
+pillow-heif==0.13.0
+wand==0.6.13
+
+# Compressão
+zstandard==0.22.0
+lz4==4.3.2
+
+# Monitoramento e Métricas
+prometheus-flask-exporter==0.23.0
+statsd==4.0.1
+datadog==0.47.0
+
+# WebSocket para colaboração
+python-socketio==5.10.0
+python-engineio==4.7.1
+websockets==12.0
+
+# Performance e Profiling
+py-spy==0.3.14
+memory-profiler==0.61.0
+line-profiler==4.1.1
+pympler==0.9
+
+# Indexação e Busca Avançada
+whoosh==2.7.4
+elasticsearch==8.11.0
+elasticsearch-dsl==8.11.0
+
+# CDN e Otimização Web
+cloudflare==2.11.1
+requests-cache==1.1.1
+
+# Backup e Sincronização
+rclone-python==0.1.7
+dropbox==11.36.2
+
+# Análise de Dados Avançada
+scipy==1.11.4
+scikit-learn==1.3.2
+plotly==5.17.0
+dash==2.14.2
+
+# Task Queue
+kombu==5.3.4
+
+# Rate Limiting
+limits==3.6.0
+
+# API Documentation
+flasgger==0.9.7.1
+apispec==6.3.1
+marshmallow-apispec==0.1.0
+
+# Development & Testing
+pytest-xdist==3.5.0
+locust==2.17.0
+
+# Security
+pyotp==2.9.0
+qrcode==7.4.2
+
+# Configuration Management
+dynaconf==3.2.4
+python-decouple==3.8
+
+# Utilities
+click-plugins==1.1.1
+cachetools==5.3.2
+retrying==1.3.4
+timeout-decorator==0.5.0 

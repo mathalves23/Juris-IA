@@ -1,0 +1,380 @@
+/* Stripe Payment Styles */
+.stripe-payment-container {
+  padding: 24px;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Plan Selection */
+.plan-selection .plan-card {
+  position: relative;
+  border: 2px solid #d9d9d9;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.plan-selection .plan-card:hover {
+  border-color: #1890ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+}
+
+.plan-selection .plan-card.selected {
+  border-color: #1890ff;
+  background: #f6ffed;
+}
+
+.plan-selection .plan-card.recommended {
+  border-color: #faad14;
+  background: #fffbe6;
+}
+
+.plan-selection .recommended-tag {
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  z-index: 1;
+}
+
+.plan-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.price-currency {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1890ff;
+}
+
+.price-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1890ff;
+  margin: 0 4px;
+}
+
+.price-period {
+  font-size: 14px;
+  color: #8c8c8c;
+}
+
+.plan-features {
+  margin: 16px 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  gap: 8px;
+}
+
+.feature-icon {
+  color: #52c41a;
+  font-size: 16px;
+}
+
+.select-plan-btn {
+  margin-top: 16px;
+  height: 40px;
+  font-weight: 500;
+}
+
+/* Customer Info Form */
+.customer-info-form {
+  max-width: 800px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Payment Method Selection */
+.payment-method-selection .payment-methods {
+  width: 100%;
+}
+
+.payment-method-card {
+  margin-bottom: 16px;
+  border: 2px solid #d9d9d9;
+  transition: all 0.3s ease;
+}
+
+.payment-method-card:hover {
+  border-color: #1890ff;
+}
+
+.payment-method-card.selected {
+  border-color: #1890ff;
+  background: #f6ffed;
+}
+
+.payment-method-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.payment-method-icon {
+  font-size: 24px;
+  color: #1890ff;
+  width: 40px;
+  text-align: center;
+}
+
+.payment-method-info h5 {
+  margin: 0 0 4px 0;
+}
+
+/* Payment Confirmation */
+.payment-confirmation {
+  max-width: 600px;
+}
+
+.order-summary {
+  margin: 16px 0;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.summary-item.discount {
+  color: #52c41a;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-details {
+  margin: 16px 0;
+}
+
+.card-details .StripeElement {
+  padding: 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: white;
+}
+
+.card-details .StripeElement--focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.security-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 12px;
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  border-radius: 6px;
+}
+
+.security-info .anticon {
+  color: #52c41a;
+}
+
+/* Payment Summary Sidebar */
+.payment-summary {
+  position: sticky;
+  top: 24px;
+}
+
+.payment-summary .summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.payment-summary .summary-total {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.payment-summary .summary-features {
+  margin-top: 16px;
+}
+
+.payment-summary .feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.payment-summary .feature-item .anticon {
+  color: #52c41a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stripe-payment-container {
+    padding: 16px;
+  }
+  
+  .plan-selection .plan-card {
+    margin-bottom: 16px;
+  }
+  
+  .plan-price {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .price-value {
+    font-size: 28px;
+  }
+  
+  .payment-method-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+/* Loading States */
+.payment-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  text-align: center;
+}
+
+.payment-loading .anticon {
+  font-size: 48px;
+  color: #1890ff;
+  margin-bottom: 16px;
+}
+
+/* Success State */
+.payment-success {
+  text-align: center;
+  padding: 48px;
+}
+
+.payment-success .success-icon {
+  font-size: 64px;
+  color: #52c41a;
+  margin-bottom: 24px;
+}
+
+/* Error State */
+.payment-error {
+  text-align: center;
+  padding: 48px;
+}
+
+.payment-error .error-icon {
+  font-size: 64px;
+  color: #ff4d4f;
+  margin-bottom: 24px;
+}
+
+/* PIX Payment Modal */
+.pix-payment-modal {
+  text-align: center;
+}
+
+.pix-payment-modal img {
+  max-width: 200px;
+  margin: 16px 0;
+}
+
+.pix-payment-modal .ant-input {
+  margin-top: 16px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* Boleto Payment */
+.boleto-instructions {
+  background: #fff7e6;
+  border: 1px solid #ffd591;
+  padding: 16px;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+
+.boleto-instructions .anticon {
+  color: #faad14;
+  margin-right: 8px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stripe-payment-container > * {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Steps customization */
+.ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #52c41a;
+  border-color: #52c41a;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+/* Card Element Styling */
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+} 

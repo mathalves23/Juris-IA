@@ -1,0 +1,12 @@
+# Redirects for Single Page Application (SPA)
+# Isso garante que todas as rotas sejam direcionadas para o index.html
+# permitindo que o React Router funcione corretamente
+
+# Proxy para API (resolve problemas de CORS)
+/api/*  https://jurisia-api.onrender.com/api/:splat  200!
+
+# SPA routing - deve vir por último
+/*    /index.html   200
+
+# Redirects específicos (se necessário)
+/admin  /admin/  301 

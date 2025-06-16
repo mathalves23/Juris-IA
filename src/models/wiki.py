@@ -1,0 +1,384 @@
+from src.extensions import db
+from datetime import datetime
+from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy import text, Index
+import json
+
+class Wiki(db.Model):
+    __tablename__ = 'wiki'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    titulo = db.Column(db.String(100), nullable=False)
+    categoria = db.Column(db.String(50), nullable=False)
+    texto = db.Column(db.Text, nullable=False)
+    autor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    data_criacao = db.Column(db.DateTime, default=datetime.utcnow)
+    data_atualizacao = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    versao = db.Column(db.Integer, default=1)
+    status = db.Column(db.Enum('Rascunho', 'Publicado', 'Obsoleto', name='wiki_status'), default='Rascunho')
+    views = db.Column(db.Integer, default=0)  # Contador de visualizações
+    
+    # Relacionamentos
+#     tags = db.relationship('WikiTag', backref='wiki_item', lazy=True, cascade='all, delete-orphan')
+    processos = db.relationship('Process', secondary='wiki_processes', backref='wiki_items')
+    comentarios = db.relationship('Comment', 
+                                primaryjoin="and_(Wiki.id==Comment.entidade_id, Comment.tipo_entidade=='Wiki')",
+                                foreign_keys="Comment.entidade_id", lazy=True)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'titulo': self.titulo,
+            'categoria': self.categoria,
+            'texto': self.texto,
+            'autor_id': self.autor_id,
+            'autor_nome': self.autor.nome if self.autor else None,
+            'data_criacao': self.data_criacao.isoformat() if self.data_criacao else None,
+            'data_atualizacao': self.data_atualizacao.isoformat() if self.data_atualizacao else None,
+            'versao': self.versao,
+            'status': self.status,
+            'views': self.views,
+            'tags': [tag.tag for tag in self.tags] if self.tags else [],
+            'total_comentarios': len(self.comentarios) if self.comentarios else 0,
+            'processos_vinculados': len(self.processos) if self.processos else 0
+        }
+
+# class WikiOldTag(db.Model):
+#     __tablename__ = 'wiki_old_tags'
+#     
+#     id = db.Column(db.Integer, primary_key=True)
+#     wiki_id = db.Column(db.Integer, db.ForeignKey('wiki.id'), nullable=False)
+#     tag = db.Column(db.String(50), nullable=False)
+#     
+#     def to_dict(self):
+#         return {
+#             'id': self.id,
+#             'wiki_id': self.wiki_id,
+#             'tag': self.tag
+#         }
+
+# Tabela de relacionamento entre wiki e processos
+wiki_processes = db.Table('wiki_processes',
+    db.Column('wiki_id', db.Integer, db.ForeignKey('wiki.id'), primary_key=True),
+    db.Column('processo_id', db.Integer, db.ForeignKey('processes.id'), primary_key=True)
+)
+
+class WikiCategory(db.Model):
+    __tablename__ = 'wiki_categories'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    slug = db.Column(db.String(100), unique=True, nullable=False)
+    description = db.Column(db.Text)
+    color = db.Column(db.String(7), default='#1890ff')  # Cor hex
+    icon = db.Column(db.String(50))  # Ícone do Ant Design
+    parent_id = db.Column(db.Integer, db.ForeignKey('wiki_categories.id'))
+    
+    # Hierarquia
+    parent = db.relationship('WikiCategory', remote_side=[id], backref='subcategories')
+    
+    # Ordenação e visibilidade
+    sort_order = db.Column(db.Integer, default=0)
+    is_active = db.Column(db.Boolean, default=True)
+    
+    # Metadados
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'slug': self.slug,
+            'description': self.description,
+            'color': self.color,
+            'icon': self.icon,
+            'parent_id': self.parent_id,
+            'sort_order': self.sort_order,
+            'is_active': self.is_active,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'subcategories': [sub.to_dict() for sub in self.subcategories] if self.subcategories else []
+        }
+
+class WikiTag(db.Model):
+    __tablename__ = 'wiki_tags'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+    slug = db.Column(db.String(50), unique=True, nullable=False)
+    description = db.Column(db.Text)
+    color = db.Column(db.String(7), default='#52c41a')
+    
+    # Estatísticas
+    usage_count = db.Column(db.Integer, default=0)
+    
+    # Metadados
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'slug': self.slug,
+            'description': self.description,
+            'color': self.color,
+            'usage_count': self.usage_count,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
+# Tabela de associação para tags
+wiki_article_tags = db.Table('wiki_article_tags',
+    db.Column('article_id', db.Integer, db.ForeignKey('wiki_articles.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('wiki_tags.id'), primary_key=True)
+)
+
+class WikiArticle(db.Model):
+    __tablename__ = 'wiki_articles'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    slug = db.Column(db.String(200), unique=True, nullable=False)
+    excerpt = db.Column(db.Text)  # Resumo do artigo
+    content = db.Column(db.Text, nullable=False)
+    
+    # Relacionamentos
+    category_id = db.Column(db.Integer, db.ForeignKey('wiki_categories.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    
+    category = db.relationship('WikiCategory', backref='articles')
+    author = db.relationship('User', backref='wiki_articles')
+    tags = db.relationship('WikiTag', secondary=wiki_article_tags, backref='articles')
+    
+    # Status e visibilidade
+    status = db.Column(db.Enum('draft', 'published', 'archived', name='article_status'), default='draft')
+    is_featured = db.Column(db.Boolean, default=False)
+    is_public = db.Column(db.Boolean, default=True)
+    
+    # Metadados para busca
+    keywords = db.Column(db.Text)  # Palavras-chave separadas por vírgula
+    legal_areas = db.Column(db.JSON)  # Áreas do direito relacionadas
+    
+    # Estatísticas
+    view_count = db.Column(db.Integer, default=0)
+    like_count = db.Column(db.Integer, default=0)
+    comment_count = db.Column(db.Integer, default=0)
+    
+    # Versionamento
+    version = db.Column(db.Integer, default=1)
+    
+    # Datas
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    published_at = db.Column(db.DateTime)
+    
+    # Índices para busca
+    __table_args__ = (
+        Index('idx_wiki_title_content', 'title', 'content'),
+        Index('idx_wiki_status_published', 'status', 'published_at'),
+        Index('idx_wiki_category_status', 'category_id', 'status'),
+    )
+    
+    def to_dict(self, include_content=True):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'slug': self.slug,
+            'excerpt': self.excerpt,
+            'content': self.content if include_content else None,
+            'category_id': self.category_id,
+            'category': self.category.to_dict() if self.category else None,
+            'author_id': self.author_id,
+            'author': {
+                'id': self.author.id,
+                'name': self.author.nome,
+                'email': self.author.email
+            } if self.author else None,
+            'tags': [tag.to_dict() for tag in self.tags],
+            'status': self.status,
+            'is_featured': self.is_featured,
+            'is_public': self.is_public,
+            'keywords': self.keywords,
+            'legal_areas': self.legal_areas,
+            'view_count': self.view_count,
+            'like_count': self.like_count,
+            'comment_count': self.comment_count,
+            'version': self.version,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'published_at': self.published_at.isoformat() if self.published_at else None
+        }
+    
+    def increment_view_count(self):
+        """Incrementa contador de visualizações"""
+        self.view_count += 1
+        db.session.commit()
+    
+    def add_like(self):
+        """Adiciona curtida"""
+        self.like_count += 1
+        db.session.commit()
+    
+    def remove_like(self):
+        """Remove curtida"""
+        if self.like_count > 0:
+            self.like_count -= 1
+        db.session.commit()
+
+class WikiRevision(db.Model):
+    __tablename__ = 'wiki_revisions'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    article_id = db.Column(db.Integer, db.ForeignKey('wiki_articles.id'), nullable=False)
+    version = db.Column(db.Integer, nullable=False)
+    
+    # Conteúdo da revisão
+    title = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    change_summary = db.Column(db.Text)  # Resumo das mudanças
+    
+    # Autor da revisão
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    author = db.relationship('User')
+    
+    # Dados da revisão
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Relacionamento com artigo
+    article = db.relationship('WikiArticle', backref='revisions')
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'article_id': self.article_id,
+            'version': self.version,
+            'title': self.title,
+            'content': self.content,
+            'change_summary': self.change_summary,
+            'author_id': self.author_id,
+            'author': {
+                'id': self.author.id,
+                'name': self.author.nome,
+                'email': self.author.email
+            } if self.author else None,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
+class WikiComment(db.Model):
+    __tablename__ = 'wiki_comments'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    article_id = db.Column(db.Integer, db.ForeignKey('wiki_articles.id'), nullable=False)
+    parent_id = db.Column(db.Integer, db.ForeignKey('wiki_comments.id'))  # Para respostas
+    
+    # Conteúdo
+    content = db.Column(db.Text, nullable=False)
+    
+    # Autor
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    author = db.relationship('User')
+    
+    # Status
+    is_approved = db.Column(db.Boolean, default=True)
+    is_deleted = db.Column(db.Boolean, default=False)
+    
+    # Metadados
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relacionamentos
+    article = db.relationship('WikiArticle', backref='comments')
+    parent = db.relationship('WikiComment', remote_side=[id], backref='replies')
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'article_id': self.article_id,
+            'parent_id': self.parent_id,
+            'content': self.content,
+            'author_id': self.author_id,
+            'author': {
+                'id': self.author.id,
+                'name': self.author.nome,
+                'email': self.author.email
+            } if self.author else None,
+            'is_approved': self.is_approved,
+            'is_deleted': self.is_deleted,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'replies': [reply.to_dict() for reply in self.replies if not reply.is_deleted] if self.replies else []
+        }
+
+class WikiBookmark(db.Model):
+    __tablename__ = 'wiki_bookmarks'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    article_id = db.Column(db.Integer, db.ForeignKey('wiki_articles.id'), nullable=False)
+    
+    # Metadados
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    notes = db.Column(db.Text)  # Notas pessoais sobre o bookmark
+    
+    # Relacionamentos
+    user = db.relationship('User', backref='wiki_bookmarks')
+    article = db.relationship('WikiArticle', backref='bookmarks')
+    
+    # Índice único para evitar duplicatas
+    __table_args__ = (
+        db.UniqueConstraint('user_id', 'article_id', name='unique_user_article_bookmark'),
+    )
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'article_id': self.article_id,
+            'article': self.article.to_dict(include_content=False) if self.article else None,
+            'notes': self.notes,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
+class WikiLike(db.Model):
+    __tablename__ = 'wiki_likes'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    article_id = db.Column(db.Integer, db.ForeignKey('wiki_articles.id'), nullable=False)
+    
+    # Metadados
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Relacionamentos
+    user = db.relationship('User', backref='wiki_likes')
+    article = db.relationship('WikiArticle', backref='likes')
+    
+    # Índice único para evitar duplicatas
+    __table_args__ = (
+        db.UniqueConstraint('user_id', 'article_id', name='unique_user_article_like'),
+    )
+
+class WikiSearchLog(db.Model):
+    __tablename__ = 'wiki_search_logs'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    query = db.Column(db.String(500), nullable=False)
+    results_count = db.Column(db.Integer, default=0)
+    
+    # Metadados
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    ip_address = db.Column(db.String(45))  # IPv6 support
+    user_agent = db.Column(db.Text)
+    
+    # Relacionamento
+    user = db.relationship('User', backref='wiki_searches')
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'query': self.query,
+            'results_count': self.results_count,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        } 

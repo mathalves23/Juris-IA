@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ JurisIA - Plataforma Jurídica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                🏛️ JurisSaaS
+            </h1>
+            <p class="text-xl text-gray-600 mb-6">
+                JurisIA - Plataforma Jurídica com Inteligência Artificial
+            </p>
+        </div>
+
+        <!-- Status Cards -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Backend Status -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                    <h2 class="text-xl font-semibold text-gray-900">Backend API</h2>
+                </div>
+                <div id="backend-status" class="space-y-2">
+                    <p class="text-gray-600">Verificando conexão...</p>
+                </div>
+                <button onclick="testBackend()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">
+                    Testar API
+                </button>
+            </div>
+
+            <!-- Features Overview -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
+                    <h2 class="text-xl font-semibold text-gray-900">Funcionalidades</h2>
+                </div>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Sistema de Autenticação
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Gerenciamento de Documentos
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Editor de Modelos Jurídicos
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Integração com IA
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Upload e Análise de Documentos
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Dashboard Analítico
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- API Test Results -->
+        <div class="max-w-4xl mx-auto mt-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">API Endpoints Disponíveis</h3>
+                <div id="api-endpoints" class="space-y-2">
+                    <div class="grid grid-cols-4 gap-4 font-semibold text-gray-700 border-b pb-2">
+                        <span>Método</span>
+                        <span>Endpoint</span>
+                        <span>Descrição</span>
+                        <span>Status</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="max-w-4xl mx-auto mt-8">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-yellow-800 mb-4">📋 Status do Projeto</h3>
+                <div class="space-y-2 text-yellow-700">
+                    <p><strong>✅ Backend:</strong> Funcionando perfeitamente na porta 5005</p>
+                    <p><strong>⚠️ Frontend:</strong> Problemas de compilação TypeScript sendo resolvidos</p>
+                    <p><strong>💾 Banco de Dados:</strong> SQLite funcionando com todas as tabelas criadas</p>
+                    <p><strong>🔧 Próximo Passo:</strong> Corrigir problemas de tipos do React para interface completa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test backend connection
+        async function testBackend() {
+            const statusDiv = document.getElementById('backend-status');
+            statusDiv.innerHTML = '<p class="text-blue-600">Testando conexão...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:5005/');
+                const data = await response.json();
+                
+                statusDiv.innerHTML = `
+                    <div class="space-y-2">
+                        <p class="text-green-600 font-semibold">✅ Conectado com sucesso!</p>
+                        <p class="text-sm text-gray-600">Mensagem: ${data.message}</p>
+                        <p class="text-sm text-gray-600">Versão: ${data.version}</p>
+                        <p class="text-sm text-gray-600">Porta: 5005</p>
+                    </div>
+                `;
+                
+                loadAPIEndpoints();
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="space-y-2">
+                        <p class="text-red-600 font-semibold">❌ Erro de conexão</p>
+                        <p class="text-sm text-gray-600">Erro: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function loadAPIEndpoints() {
+            const endpointsDiv = document.getElementById('api-endpoints');
+            
+            const endpoints = [
+                { method: 'GET', path: '/', desc: 'Status da API', test: true },
+                { method: 'POST', path: '/api/auth/login', desc: 'Login de usuário', test: false },
+                { method: 'POST', path: '/api/auth/register', desc: 'Registro de usuário', test: false },
+                { method: 'GET', path: '/api/documents', desc: 'Listar documentos', test: false },
+                { method: 'POST', path: '/api/documents', desc: 'Criar documento', test: false },
+                { method: 'GET', path: '/api/templates', desc: 'Listar modelos', test: false },
+                { method: 'POST', path: '/api/ai/generate', desc: 'Gerar conteúdo com IA', test: false }
+            ];
+
+            for (const endpoint of endpoints) {
+                const statusSpan = document.createElement('span');
+                
+                if (endpoint.test) {
+                    try {
+                        const response = await fetch(`http://localhost:5005${endpoint.path}`);
+                        statusSpan.innerHTML = response.ok ? 
+                            '<span class="text-green-600">✅ OK</span>' : 
+                            '<span class="text-red-600">❌ Error</span>';
+                    } catch (error) {
+                        statusSpan.innerHTML = '<span class="text-red-600">❌ Error</span>';
+                    }
+                } else {
+                    statusSpan.innerHTML = '<span class="text-blue-600">📋 Disponível</span>';
+                }
+
+                const row = document.createElement('div');
+                row.className = 'grid grid-cols-4 gap-4 py-2 border-b border-gray-100';
+                row.innerHTML = `
+                    <span class="font-medium">${endpoint.method}</span>
+                    <span class="text-blue-600">${endpoint.path}</span>
+                    <span class="text-gray-600">${endpoint.desc}</span>
+                `;
+                row.appendChild(statusSpan);
+                
+                endpointsDiv.appendChild(row);
+            }
+        }
+
+        // Auto-test on load
+        window.onload = () => {
+            testBackend();
+        };
+    </script>
+</body>
+</html> 

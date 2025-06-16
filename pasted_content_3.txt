@@ -1,0 +1,156 @@
+1. MÓDULO DE CHECKOUT E PAGAMENTO (SaaS Recorrente)
+ETAPA 16 – CHECKOUT, PLANOS, PAGAMENTO E GESTÃO DE ASSINATURA
+16.1 Defina a política comercial dos planos
+Crie pelo menos dois planos:
+
+Produto de entrada (ex: “Editor IA”):
+Inclui somente o editor de petições com IA, limitado a 15 documentos/mês, com preço reduzido e CTA clara.
+
+Plano completo (ex: “Plataforma Total”):
+Inclui todos os módulos, limites maiores de uso, diferenciais competitivos e suporte ampliado.
+
+Documente os benefícios e limitações de cada plano.
+
+Defina política de trial (ex: 7 dias grátis, sem cartão ou com cartão).
+
+16.2 Implemente a página de preços
+Estruture uma landing de planos com:
+
+Tabela comparativa dos planos, valores, limites, destaque do diferencial de cada pacote.
+
+CTA para contratação (“Comece agora”, “Testar grátis”, etc).
+
+Indicação clara de cobrança recorrente (mensal/anual), descontos para plano anual, etc.
+
+16.3 Implemente a página de checkout
+Crie uma página segura de checkout com:
+
+Seleção do plano (entrada ou completo).
+
+Campos para nome, e-mail, senha, CNPJ/CPF, telefone, dados de faturamento.
+
+Opção de cupom de desconto, se for estratégia.
+
+Campos para cartão de crédito, Pix, boleto ou integração com gateways (PagSeguro, Stripe, MercadoPago, etc).
+
+Confirmação de aceite de termos, LGPD e política comercial.
+
+Indicação clara de valor, periodicidade e quando será a primeira cobrança.
+
+Geração automática de nota fiscal, se possível (integração com sistemas de NFe/Simples Nacional).
+
+16.4 Integre e automatize a recorrência
+Processe cobranças mensais/anuais conforme plano selecionado.
+
+Permita upgrade/downgrade automático de plano, com cálculo proporcional.
+
+Notifique usuário antes da renovação ou se houver falha de pagamento (envio de e-mail/SMS/WhatsApp).
+
+Bloqueie acesso a recursos premium em caso de inadimplência, mas permita resolução facilitada pelo painel do usuário.
+
+16.5 Implemente painel de gestão de assinatura
+No painel do usuário:
+
+Exiba status do plano, histórico de pagamentos, próxima cobrança, opção de alterar cartão/dados de cobrança.
+
+Permita cancelar, migrar de plano ou solicitar 2ª via de boleto/recibo.
+
+Para produto de entrada, exiba contador de uso (ex: “12 de 15 documentos criados este mês”).
+
+Informe claramente as consequências de cada ação (“Ao cancelar, você perde acesso imediato”, etc).
+
+16.6 Fluxo de onboarding após pagamento
+Direcione usuário imediatamente ao módulo contratado (ex: quem comprar só o editor de IA, vá direto ao dashboard do editor).
+
+Mostre tutorial breve, dicas de uso, destaque do upgrade (“Quer liberar mais documentos e acesso ao workflow completo? Faça upgrade a qualquer momento!”).
+
+2. NOVO PRODUTO DE ENTRADA – MÓDULO EDITOR IA STAND-ALONE
+ETAPA 17 – PRODUTO “EDITOR IA” COM LIMITE DE USO
+17.1 Separe o módulo Editor IA como produto independente
+No fluxo de compra, permita contratação apenas do editor.
+
+O usuário terá acesso exclusivamente ao editor de petições com IA, sem os módulos de Kanban, automação de prazos, wiki etc.
+
+17.2 Limite de uso
+Restrinja o número de documentos gerados por mês (ex: 15).
+
+Mostre ao usuário, de forma clara, quantos documentos já usou no ciclo vigente.
+
+Ao atingir o limite, exiba opção de upgrade, migração para plano completo, ou compra de créditos extras (se decidir oferecer).
+
+17.3 UX de destaque para o produto de entrada
+Landing page específica, focando:
+
+Velocidade para criar petições de qualidade com IA
+
+Economia de tempo
+
+Adeus ao “bloquinho de notas”
+
+Exemplo de geração de documento em poucos cliques
+
+Copy direta: “Aumente sua produtividade, pague só pelo que usar, sem compromisso”
+
+Mostre comparativo visual dos planos, incentive upgrade com benefícios exclusivos (Kanban, automação, número ilimitado de docs, etc).
+
+17.4 Upsell inteligente
+Sempre que atingir o limite, mostre call-to-action para migrar de plano.
+
+Envie e-mails automáticos avisando quando estiver perto de atingir o limite (“Você já usou 12 de 15 documentos este mês. Libere uso ilimitado migrando para o plano completo!”).
+
+17.5 Integração com checkout e painel de assinatura
+Checkout deve registrar no banco o tipo de produto/plano, liberar acesso apenas ao editor, controlar contador de uso mensal, e bloquear/criar alerta se ultrapassar.
+
+Permita ao usuário fazer upgrade com 1 clique e faturamento proporcional.
+
+PROMPTS IMPERATIVOS PARA DEV/PRODUTO – INCLUINDO NOVO PRODUTO DE ENTRADA E CHECKOUT
+Inclua no projeto, de forma sequencial, as etapas abaixo:
+
+16.1 Defina os planos e suas limitações, preços, benefícios e política de trial. Documente essas regras no repositório do produto.
+
+16.2 Implemente a página de preços com tabela comparativa, diferenciais, CTA para contratação de cada plano.
+
+**16.3 Crie a página de checkout segura:
+
+Recolha todos dados do usuário e faturamento.
+
+Permita escolha de método de pagamento.
+
+Integre com gateway de pagamento que processe recorrência.
+
+Gere comprovante e nota fiscal automaticamente.
+
+Exiba aceite de termos e política de privacidade.**
+
+**16.4 Integre a recorrência:
+
+Processe cobranças automáticas.
+
+Implemente lógica de upgrade/downgrade.
+
+Notifique usuário em cada evento (confirmação, cobrança, falha, inadimplência, renovação).
+
+Garanta bloqueio/desbloqueio de acesso conforme status de pagamento.**
+
+**16.5 No painel do usuário, exiba claramente:
+
+Status do plano, histórico de pagamentos, limite de uso, opções de alteração/cancelamento/migração.
+
+No produto de entrada, mostre contador de documentos usados e restante do ciclo.
+
+Crie alertas visuais e CTA de upsell ao atingir o limite.**
+
+16.6 No onboarding, direcione usuário ao módulo contratado, personalize tutorial conforme o plano adquirido e destaque sempre o valor do upgrade.
+
+**17.1 Separe o editor IA como produto independente:
+
+Restrinja acesso a outros módulos.
+
+Aplique limites de uso mensais.**
+
+17.2 Controle o uso mensal de documentos e bloqueie novas criações ao atingir o limite, exibindo aviso e opção de migrar para plano completo.
+
+17.3 Crie landing e fluxo de aquisição próprios para o produto de entrada, focando nos benefícios do editor IA.
+
+17.4 Implemente triggers automáticas de upsell (na interface, por e-mail, no painel) incentivando a contratação do plano completo sempre que o limite for atingido ou usuário demonstrar interesse em outras funções.
+

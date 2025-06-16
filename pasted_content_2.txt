@@ -1,0 +1,254 @@
+ETAPA 1 – ARQUITETURA E FUNDAMENTAÇÃO
+1.1 Defina a arquitetura:
+Escolha tecnologias para backend (ex: Node.js, Python, Java), frontend (React, Angular, Vue), banco de dados (PostgreSQL, MySQL).
+
+Estruture API RESTful clara, documentada e segura.
+
+Projete separação de módulos: Autenticação, Kanban, Processos/Publicações, IA/Petições, Wiki, Notificações, Relatórios, Admin.
+
+Estabeleça camada de segurança (JWT, hash de senhas, CORS, HTTPS).
+
+Implemente CI/CD com pipelines automáticos de build, testes, deploy e rollback.
+
+Documente decisões em repositório de projeto.
+
+ETAPA 2 – ESTRUTURAÇÃO DE MODELOS DE DADOS
+2.1 Modele as entidades/tabelas (relacional):
+Usuário: id, nome, e-mail, senha hash, função, foto, preferências notificação, data criação, status.
+
+Cliente: id, nome, CNPJ/CPF, contatos, endereço, processos.
+
+Processo: id, número, tribunal, área, status, partes, advogados, publicações, quadros Kanban vinculados.
+
+Quadro Kanban: id, nome, área, cliente, listas.
+
+Lista: id, nome, ordem, quadro, cartões.
+
+Cartão/Tarefa: id, título, descrição, processo, responsável, data limite, status, etiquetas, checklist, anexos, comentários, histórico, criado_em, atualizado_em.
+
+Publicação: id, processo, tribunal, data, texto, status leitura, OCR texto.
+
+Memória Operacional: id, título, categoria, tags, texto, processos vinculados, autor, data, comentários, versão, status.
+
+Notificação: id, tipo, mensagem, destinatário, lida, data, link.
+
+Anexo: id, nome, tipo, url, cartão/processo, usuário, data upload.
+
+Defina relações, chaves estrangeiras, validações, constraints.
+
+2.2 Crie seeds para teste:
+Gere usuários fictícios (admin, gestor, advogado, colaborador), clientes, processos simulados, quadros, listas, cartões com checklists, publicações, itens wiki, notificações e anexos.
+
+ETAPA 3 – AUTENTICAÇÃO E PERMISSÕES
+3.1 Implemente autenticação segura:
+Cadastro/login, hash de senha (bcrypt/scrypt), JWT, refresh token, logout.
+
+Adicione autenticação multifator (opcional, via e-mail ou SMS).
+
+3.2 Configure papéis e permissões:
+Admin: CRUD geral.
+
+Gestor: gerencia equipe/processos/quadros.
+
+Advogado: acessa processos/tarefas próprios.
+
+Colaborador: acesso restrito a designados.
+
+No frontend, exiba apenas botões/menus permitidos ao papel do usuário.
+
+Backend: valide permissões em cada endpoint.
+
+ETAPA 4 – MÓDULO KANBAN JURÍDICO
+4.1 Crie quadro Kanban:
+Permita criar quadro com nome, área, cliente, template inicial (ex: “Processos Cíveis”).
+
+Visualização horizontal das listas.
+
+4.2 Permita listas customizáveis:
+Adicione/remova listas, renomeie, arraste para reordenar.
+
+4.3 Implemente cartões/tarefas:
+Crie manualmente, associe a processo/cliente ou crie automático por evento/processo/publicação.
+
+Adicione título, descrição, responsável, prazo, status, etiquetas (cor, área, urgência), checklist (subtarefas), anexos (upload), comentários com menção a usuário (@).
+
+Histórico: registro de todas as movimentações, edições, conclusões, exclusões.
+
+Permita drag-and-drop entre listas.
+
+Exiba badges de atraso/prioridade.
+
+4.4 Funcionalidades extras:
+Busca global, filtro por status/responsável/cliente/área.
+
+Modal detalhado ao clicar em cartão.
+
+Confirmação para exclusão, desfazer ações recentes.
+
+Permita duplicar cartões para tarefas recorrentes.
+
+ETAPA 5 – AUTOMAÇÃO DE PUBLICAÇÕES, PRAZOS E TAREFAS
+5.1 Implemente robô de scraping:
+Programe coleta automatizada de publicações em portais oficiais (PJe, Projudi, e-SAJ, eproc), buscando por OAB, CPF, CNPJ.
+
+Gerencie cookies, logins e manuseio de captcha (use alertas para revisão manual quando necessário).
+
+5.2 Parser de publicações:
+Use NLP/regex para identificar tipo de andamento, abertura de prazo, prazo legal, termo inicial, ação exigida.
+
+Implemente OCR para PDFs sem texto.
+
+5.3 Geração automática de tarefas:
+Ao identificar novo prazo, crie cartão no Kanban com: tipo de manifestação, data limite (calculando dias úteis), checklist sugerido (“analisar publicação”, “redigir minuta”, “protocolo”).
+
+Notifique responsável.
+
+5.4 Dashboard para monitoramento do robô:
+Status por tribunal, logs de sucesso/erro, alerta se rotina falhar.
+
+ETAPA 6 – MEMÓRIA OPERACIONAL (WIKI JURÍDICA)
+6.1 Cadastro de conhecimento:
+Permita adicionar teses, argumentos, pareceres, modelos, dicas, lições aprendidas, precedentes.
+
+Campos: título, categoria, tags, texto, vínculo com processos/cartões, autor, data, comentários, versão, status.
+
+6.2 Busca avançada:
+Permita pesquisar por palavra-chave, tag, categoria, autor, data, processo vinculado.
+
+6.3 Integração Kanban/IA:
+Sugira conteúdo relevante da Wiki ao abrir tarefa ou criar petição.
+
+Vincule conteúdo wiki diretamente a cartões Kanban.
+
+6.4 Validação e versionamento:
+Permita marcar conteúdo como “validado”, “obsoleto”.
+
+Salve histórico de alterações e usuários.
+
+ETAPA 7 – GERAÇÃO DE PETIÇÃO AUTOMÁTICA POR IA
+7.1 Upload/modelagem de modelos:
+Permita usuário cadastrar modelos de petição, definir variáveis dinâmicas (ex: {NOME_CLIENTE}, {PRAZO}, {NOME_JUIZ}), classificar por área/tribunal/tipo.
+
+7.2 Treinamento da IA:
+IA deve analisar peças antigas do escritório e aprender estrutura, vocabulário, argumentos e estilo.
+
+7.3 Geração de rascunho:
+Ao criar nova tarefa de prazo relevante, gere rascunho automático de petição, preenchendo dados/contexto, argumentos sugeridos pela IA, checklist de revisão.
+
+Exiba campos obrigatórios em destaque.
+
+7.4 Editor de texto:
+WYSIWYG com sugestões em balões, exportação para PDF/DOC, histórico de versões.
+
+Permita comentários internos, revisão colaborativa, salvar rascunho e publicar/baixar.
+
+ETAPA 8 – NOTIFICAÇÕES E ALERTAS
+8.1 Central de notificações:
+Envie notificações push, e-mail, WhatsApp (quando viável), e painel interno para: novo prazo/tarefa, atribuição de tarefa, menção em comentário, atualização na Wiki, falha de scraping.
+
+8.2 Personalização:
+Permita silenciar/adiar alertas, marcar como lida, filtrar por tipo/prioridade.
+
+Log de envio, leitura e ação tomada pelo usuário.
+
+ETAPA 9 – DASHBOARD, RELATÓRIOS E PRODUTIVIDADE
+9.1 Painel inicial:
+Exiba prazos mais próximos, tarefas em atraso, quadros Kanban favoritos, notificações recentes.
+
+9.2 Relatórios:
+Gere relatórios de produtividade por usuário/equipe/área/cliente, histórico de tarefas, tempo médio de execução, andamentos processuais, comparativos entre períodos.
+
+Permita exportação PDF/Excel, gráficos (barras, pizza, linha, mapas de calor).
+
+ETAPA 10 – ONBOARDING E SUPORTE
+10.1 Onboarding guiado:
+Wizard de primeiro acesso, cadastro guiado, importação facilitada (planilha, PJe).
+
+Sugira quadros/listas templates conforme área.
+
+Exiba vídeo/gif curto de demonstração do diferencial.
+
+10.2 Base de conhecimento:
+FAQ, busca por temas, dicas rápidas, chat para suporte humano ou IA.
+
+Canal de feedback para bugs, sugestões e críticas.
+
+ETAPA 11 – SEGURANÇA, LGPD, AUDITORIA E MONITORAMENTO
+11.1 LGPD:
+Solicite consentimento para uso de dados, permita anonimização e download de informações pessoais.
+
+Exponha política de privacidade clara.
+
+11.2 Auditoria:
+Log de acesso, modificação, exclusão, exportação de dados, ações administrativas.
+
+Alerta de uso suspeito: login de IPs não usuais, download em massa, acessos em horários atípicos.
+
+11.3 Monitoramento técnico:
+Dashboard de erros, uptime, logs exportáveis, alerta por e-mail/painel quando rotina crítica falhar.
+
+ETAPA 12 – LANDING PAGE E COPY
+12.1 Estrutura da landing page:
+Proposta de valor em até 2 linhas, acima da dobra.
+
+CTA destacado (“Experimente gratuitamente”).
+
+GIF/vídeo animado mostrando captação automática > tarefa Kanban > petição IA > resolução simples.
+
+Diferenciais em ícones: Kanban visual, Automação de prazos, Petição por IA, Memória Operacional.
+
+Depoimentos/resultados reais.
+
+Passo a passo visual de uso.
+
+Rodapé simples com links essenciais.
+
+12.2 Copywriting e UX:
+Foco em benefício prático e dor do advogado.
+
+Linguagem clara, moderna, sem jargão excessivo.
+
+Acesso rápido ao teste grátis, tour, contato, e FAQ.
+
+ETAPA 13 – API, INTEGRAÇÃO E ADD-ONS FUTUROS
+13.1 Documentação API:
+OpenAPI/Swagger documentando todos endpoints, payloads de exemplo, métodos de autenticação, erros padrão.
+
+13.2 Módulos extras preparados para acoplamento:
+Agenda inteligente (compromissos, audiências), Financeiro (honorários, despesas, DRE), Repositório documental, Contratos, Comunicação (WhatsApp/SMS), Correspondentes, BI avançado, Analytics.
+
+13.3 Exemplo de fluxos para integração futura:
+Exemplo: ao fechar acordo, gerar boleto automático, alertar financeiro, registrar na agenda, atualizar quadro Kanban.
+
+ETAPA 14 – TESTES DE USABILIDADE, FEEDBACK E EVOLUÇÃO
+14.1 Roteiro de testes:
+Usuário novo realiza onboarding.
+
+Cria cliente/processo/kanban/tarefa.
+
+Move tarefas entre listas, edita/comenta/adiciona anexo/checklist.
+
+Usa memória operacional, busca e vincula conteúdo wiki.
+
+Recebe e interage com notificações.
+
+Testa geração de petição IA, editor, exporta PDF.
+
+Simula erros: permissão negada, campo obrigatório vazio, falha técnica (simulada).
+
+Feedback real de advogados/gestores/colaboradores.
+
+14.2 Iteração e ajuste:
+Colete e registre sugestões, corrija falhas e refine experiência antes de liberar para mercado amplo.
+
+ETAPA 15 – DEPLOY, MONITORAMENTO, SUPORTE E RELEASE NOTES
+15.1 Deploy seguro:
+Backup automático, rollback rápido, monitoramento de estabilidade (uptime, alertas).
+
+Área interna com changelog de atualizações.
+
+Canal de suporte direto para correção rápida de bugs e suporte a usuários.
+
+Siga cada subtarefa fielmente e não avance antes de validar os resultados da etapa anterior. Sempre priorize experiência do usuário, clareza de fluxo, segurança, automação real, diferenciação visual e integração futura de novos módulos.
+Documente cada decisão e ajuste com base no feedback de usuário real. Lance MVP somente após cobertura total dos fluxos essenciais, onboarding claro e estabilidade comprovada.
+

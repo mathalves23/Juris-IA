@@ -1,0 +1,10 @@
+# Redirects for Single Page Application (SPA)
+# Isso garante que todas as rotas sejam direcionadas para o index.html
+# permitindo que o React Router funcione corretamente
+
+/*    /index.html   200
+
+# Redirects específicos (se necessário)
+/api/*  https://jurisia-api.herokuapp.com/api/:splat  200
+/admin  /admin/  301
+/websocket/*  https://jurisia-api.herokuapp.com/websocket/:splat  200 

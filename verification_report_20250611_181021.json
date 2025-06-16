@@ -1,0 +1,54 @@
+{
+  "passed": 4,
+  "failed": 4,
+  "tests": [
+    {
+      "feature": "File Structure",
+      "status": "PASS",
+      "message": "All required files present",
+      "timestamp": "2025-06-11T18:10:20.267932"
+    },
+    {
+      "feature": "Config - OpenAI API Key",
+      "status": "PASS",
+      "message": "OPENAI_API_KEY is configured",
+      "timestamp": "2025-06-11T18:10:20.267958"
+    },
+    {
+      "feature": "Config - Database URL",
+      "status": "PASS",
+      "message": "DATABASE_URL is configured",
+      "timestamp": "2025-06-11T18:10:20.267964"
+    },
+    {
+      "feature": "Config - JWT Secret",
+      "status": "PASS",
+      "message": "JWT_SECRET_KEY is configured",
+      "timestamp": "2025-06-11T18:10:20.267968"
+    },
+    {
+      "feature": "Database",
+      "status": "FAIL",
+      "message": "Database file not found",
+      "timestamp": "2025-06-11T18:10:20.268146"
+    },
+    {
+      "feature": "Authentication",
+      "status": "FAIL",
+      "message": "Login failed: 400",
+      "timestamp": "2025-06-11T18:10:20.961997"
+    },
+    {
+      "feature": "Health Check",
+      "status": "WARN",
+      "message": "Application status: UP",
+      "timestamp": "2025-06-11T18:10:20.990909"
+    },
+    {
+      "feature": "Metrics Health",
+      "status": "FAIL",
+      "message": "Metrics health failed: 401",
+      "timestamp": "2025-06-11T18:10:21.007733"
+    }
+  ]
+}

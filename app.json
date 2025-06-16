@@ -1,0 +1,43 @@
+{
+  "name": "JurisIA - Plataforma Jurídica SaaS",
+  "description": "Plataforma completa para automação jurídica com IA",
+  "image": "heroku/python",
+  "repository": "https://github.com/seu-usuario/jurisia",
+  "keywords": ["python", "flask", "juridico", "ia", "saas"],
+  "addons": [
+    "heroku-postgresql:mini",
+    "heroku-redis:mini"
+  ],
+  "env": {
+    "FLASK_ENV": {
+      "description": "Ambiente Flask",
+      "value": "production"
+    },
+    "SECRET_KEY": {
+      "description": "Chave secreta do Flask",
+      "generator": "secret"
+    },
+    "OPENAI_API_KEY": {
+      "description": "Chave da API OpenAI"
+    },
+    "CORS_ORIGINS": {
+      "description": "Origens permitidas para CORS",
+      "value": "https://jurisia.netlify.app,https://*.netlify.app"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "python src/init_db.py"
+  }
+} 

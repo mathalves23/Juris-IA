@@ -1,0 +1,216 @@
+[build]
+  base = "frontend/"
+  publish = "frontend/build"
+  command = "cd frontend && npm ci && npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+  CI = "true"
+  GENERATE_SOURCEMAP = "false"
+  REACT_APP_API_URL = "/api"
+  REACT_APP_WEBSOCKET_URL = "wss://jurisia-api.onrender.com"
+  REACT_APP_ENV = "production"
+  REACT_APP_VERSION = "2.0.0"
+  REACT_APP_APP_NAME = "JurisIA"
+  REACT_APP_DEBUG = "false"
+  REACT_APP_MAX_FILE_SIZE = "10485760"
+  REACT_APP_ALLOWED_FILE_TYPES = ".pdf,.doc,.docx,.txt,.rtf"
+  REACT_APP_THEME = "light"
+  REACT_APP_LOCALE = "pt-BR"
+  REACT_APP_TIMEZONE = "America/Sao_Paulo"
+  REACT_APP_ENABLE_ANALYTICS = "true"
+  REACT_APP_ENABLE_WEBSOCKET = "true"
+  REACT_APP_ENABLE_AI_FEATURES = "true"
+  REACT_APP_ENABLE_REAL_TIME = "true"
+
+# === REDIRECTS CORRIGIDOS PARA RESOLVER CORS ===
+
+# API AI
+[[redirects]]
+  from = "/api/ai/*"
+  to = "https://jurisia-api.onrender.com/api/ai/:splat"
+  status = 200
+  force = true
+  headers = {Access-Control-Allow-Origin = "*"}
+
+# API Contract Analyzer  
+[[redirects]]
+  from = "/api/contract-analyzer/*"
+  to = "https://jurisia-api.onrender.com/api/contract-analyzer/:splat"
+  status = 200
+  force = true
+  headers = {Access-Control-Allow-Origin = "*"}
+
+# Todas as outras APIs
+[[redirects]]
+  from = "/api/*"
+  to = "https://jurisia-api.onrender.com/api/:splat"
+  status = 200
+  force = true
+  headers = {Access-Control-Allow-Origin = "*"}
+
+# Health check
+[[redirects]]
+  from = "/health"
+  to = "https://jurisia-api.onrender.com/health"
+  status = 200
+  force = true
+
+# === FALLBACK PARA APIs QUANDO BACKEND ESTIVER OFFLINE ===
+[[redirects]]
+  from = "/api/ai/generate"
+  to = "/.netlify/functions/mock-ai"
+  status = 200
+  conditions = {Role = ["fallback"]}
+
+# SPA routing - DEVE SER A ÚLTIMA REGRA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# === HEADERS CORS GLOBAIS ===
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Requested-With"
+    Access-Control-Max-Age = "86400"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# === CACHE OTIMIZADO ===
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para imagens e fontes
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Plugin para otimização
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+[context.production]
+  command = "npm ci && npm run build"
+
+[context.deploy-preview]
+  command = "npm ci && npm run build"
+
+[context.branch-deploy]
+  command = "npm ci && npm run build"
+
+# Configurações PWA
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+
+# Configurações de API proxy com headers CORS
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Requested-With"
+
+# Cache otimizado para assets estáticos
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para imagens e fontes
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Plugin para otimização
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true 

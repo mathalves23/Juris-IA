@@ -1,0 +1,71 @@
+{
+  "short_name": "JurisIA",
+  "name": "JurisIA - Plataforma Jurídica com IA",
+  "description": "Plataforma completa de automação jurídica com inteligência artificial para advogados e escritórios",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1890ff",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshot-mobile.png", 
+      "sizes": "375x812",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Novo Documento",
+      "short_name": "Documento",
+      "description": "Criar novo documento jurídico",
+      "url": "/documents/new",
+      "icons": [{ "src": "icons/document.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "IA Assistant",
+      "short_name": "IA",
+      "description": "Abrir assistente de IA jurídica",
+      "url": "/ai-assistant",
+      "icons": [{ "src": "icons/ai.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Ver dashboard analytics",
+      "url": "/dashboard",
+      "icons": [{ "src": "icons/dashboard.png", "sizes": "96x96" }]
+    }
+  ],
+  "prefer_related_applications": false
+} 
