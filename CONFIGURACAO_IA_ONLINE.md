@@ -318,6 +318,18 @@ MAX_LOGIN_ATTEMPTS = 5       # tentativas de login
 
 ## 🚨 Solução de Problemas
 
+### **Erro: Timeout em repositórios PyPI privados**
+Se você tiver configurações de PyPI privadas (como furycloud.io), o script automaticamente configura o pip para usar o PyPI padrão:
+
+```bash
+# O script faz isso automaticamente, mas você pode fazer manualmente:
+pip config set global.index-url https://pypi.org/simple/
+pip config set global.trusted-host pypi.org
+
+# Ou instalar diretamente (similar ao npm --registry):
+pip install --index-url https://pypi.org/simple/ --trusted-host pypi.org --verbose -r requirements.txt
+```
+
 ### **Erro: "OpenAI não configurado"**
 ```bash
 # Verificar API key

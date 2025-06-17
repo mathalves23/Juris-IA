@@ -65,12 +65,17 @@ echo ""
 echo "📦 3. Instalando Dependências"
 echo "-----------------------------"
 
+# Configurar pip para usar registro padrão (similar ao npm --registry)
+log "Configurando pip para usar PyPI padrão..."
+pip config set global.index-url https://pypi.org/simple/
+pip config set global.trusted-host pypi.org
+
 if [ -f "requirements.txt" ]; then
     log "Instalando dependências do requirements.txt..."
-    pip install -r requirements.txt
+    pip install --index-url https://pypi.org/simple/ --trusted-host pypi.org --verbose -r requirements.txt
 else
     log "Instalando dependências essenciais..."
-    pip install flask flask-cors openai python-dotenv flask-sqlalchemy flask-jwt-extended
+    pip install --index-url https://pypi.org/simple/ --trusted-host pypi.org --verbose flask flask-cors openai python-dotenv flask-sqlalchemy flask-jwt-extended
 fi
 
 # 4. Configurar OpenAI API Key

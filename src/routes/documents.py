@@ -698,3 +698,6 @@ def create_from_template(template_id):
         db.session.rollback()
         log_error(f"Erro ao criar documento do template {template_id}: {e}")
         return jsonify({'error': 'Erro interno do servidor'}), 500
+
+# Alias para compatibilidade com app.py
+documents_bp = bp

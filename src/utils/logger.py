@@ -82,9 +82,20 @@ def setup_logging(app):
         logging.INFO if app.config.get('SQL_DEBUG') else logging.WARNING
     )
 
-def log_request():
-    """Log de requisições HTTP"""
-    g.start_time = time.time()
+def log_request(func):
+    """Decorator para log de requisições HTTP"""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        g.start_time = time.time()
+        
+        try:
+            result = func(*args, **kwargs)
+            return result
+        except Exception as e:
+            current_app.logger.error(f"Request error in {func.__name__}: {str(e)}")
+            raise
+    
+    return wrapper
 
 def log_response(response):
     """Log de respostas HTTP"""
