@@ -1,53 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
-      "es6",
-      "es2020"
+      "es6"
     ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "downlevelIteration": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": false,
-    "noImplicitThis": false,
-    "strictNullChecks": false,
-    "strictFunctionTypes": false,
-    "strictBindCallApply": false,
-    "strictPropertyInitialization": false,
-    "noImplicitOverride": false,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "baseUrl": "src",
-    "paths": {
-      "*": ["*", "node_modules/*"]
-    }
+    "jsx": "react-jsx"
   },
   "include": [
-    "src",
-    "src/**/*",
-    "src/types/**/*",
-    "node_modules/@types/react/index.d.ts",
-    "node_modules/@types/react-dom/index.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist"
+    "src"
   ]
 } 
