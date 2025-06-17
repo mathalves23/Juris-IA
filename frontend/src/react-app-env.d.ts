@@ -3,10 +3,16 @@
 // React types support - Allow named imports
 declare module 'react' {
   export * from '@types/react';
+  export { default } from '@types/react';
 }
 
 declare module 'react-dom' {
   export * from '@types/react-dom';
+  export { default } from '@types/react-dom';
+}
+
+declare module 'react-dom/client' {
+  export * from '@types/react-dom/client';
 }
 
 // JSX support with styled-jsx
@@ -156,5 +162,169 @@ declare global {
 
   interface Window {
     React: typeof React;
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }
-} 
+}
+
+// Definições para módulos CSS
+declare module '*.module.css' {
+  const classes: { readonly [key: string]: string };
+  export default classes;
+}
+
+declare module '*.module.scss' {
+  const classes: { readonly [key: string]: string };
+  export default classes;
+}
+
+// Definições para imagens
+declare module '*.png' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.jpg' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.jpeg' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.gif' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.svg' {
+  const src: string;
+  export default src;
+}
+
+// Definições para WebSocket
+declare global {
+  interface WebSocket {
+    readyState: number;
+  }
+}
+
+// Definições para API de notificações
+declare global {
+  interface Notification {
+    new(title: string, options?: NotificationOptions): Notification;
+    permission: 'granted' | 'denied' | 'default';
+    requestPermission(): Promise<'granted' | 'denied' | 'default'>;
+  }
+}
+
+// Definições para localStorage
+declare global {
+  interface Storage {
+    getItem(key: string): string | null;
+    setItem(key: string, value: string): void;
+    removeItem(key: string): void;
+    clear(): void;
+  }
+}
+
+// Definições para PDF
+declare module 'html2pdf.js' {
+  interface Html2PdfOptions {
+    margin?: number | [number, number, number, number];
+    filename?: string;
+    image?: { type?: string; quality?: number };
+    html2canvas?: any;
+    jsPDF?: any;
+  }
+
+  interface Html2Pdf {
+    from(element: HTMLElement): Html2Pdf;
+    set(options: Html2PdfOptions): Html2Pdf;
+    save(): Promise<void>;
+    output(type: string): Promise<any>;
+    outputPdf(type?: string): any;
+  }
+
+  function html2pdf(): Html2Pdf;
+  export = html2pdf;
+}
+
+// Definições para Mammoth
+declare module 'mammoth' {
+  interface ConvertToHtmlOptions {
+    styleMap?: string[];
+  }
+
+  interface ConvertResult {
+    value: string;
+    messages: Array<{ type: string; message: string }>;
+  }
+
+  export function convertToHtml(input: { arrayBuffer: ArrayBuffer }, options?: ConvertToHtmlOptions): Promise<ConvertResult>;
+}
+
+// Definições para File Saver
+declare module 'file-saver' {
+  export function saveAs(data: Blob | File, filename?: string, options?: { autoBom?: boolean }): void;
+}
+
+// Definições para React Query
+declare module '@tanstack/react-query' {
+  export * from '@tanstack/react-query/types';
+}
+
+// Definições para Axios
+declare module 'axios' {
+  export * from 'axios/index';
+  export { default } from 'axios/index';
+}
+
+// Definições para TinyMCE
+declare module '@tinymce/tinymce-react' {
+  import { Component } from 'react';
+  
+  export interface EditorProps {
+    apiKey?: string;
+    id?: string;
+    init?: any;
+    initialValue?: string;
+    value?: string;
+    onEditorChange?: (content: string, editor: any) => void;
+    onInit?: (evt: any, editor: any) => void;
+    plugins?: string;
+    toolbar?: string;
+    height?: number;
+    menubar?: boolean;
+  }
+  
+  export class Editor extends Component<EditorProps> {}
+}
+
+// Extensões de tipos React para melhor compatibilidade
+declare global {
+  namespace React {
+    export import FC = React.FunctionComponent;
+    export import Component = React.Component;
+    export import PureComponent = React.PureComponent;
+    export import createElement = React.createElement;
+    export import createContext = React.createContext;
+    export import useState = React.useState;
+    export import useEffect = React.useEffect;
+    export import useContext = React.useContext;
+    export import useMemo = React.useMemo;
+    export import useCallback = React.useCallback;
+    export import useRef = React.useRef;
+    export import useReducer = React.useReducer;
+    export import useLayoutEffect = React.useLayoutEffect;
+    export import forwardRef = React.forwardRef;
+    export import memo = React.memo;
+    export import lazy = React.lazy;
+    export import Suspense = React.Suspense;
+    export import Fragment = React.Fragment;
+    export import StrictMode = React.StrictMode;
+  }
+}
+
+export {}; 
