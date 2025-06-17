@@ -1,7 +1,7 @@
 [build]
   base = "frontend/"
   publish = "build"
-  command = "npm install --prefer-offline --no-audit && npm run build"
+  command = "npm ci --prefer-offline --no-audit && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -26,13 +26,13 @@
 
 # === CONFIGURAÇÕES DE CONTEXTO ===
 [context.production]
-  command = "npm install --prefer-offline --no-audit && npm run build"
+  command = "npm ci --prefer-offline --no-audit && npm run build"
 
 [context.deploy-preview]
-  command = "npm install --prefer-offline --no-audit && npm run build"
+  command = "npm ci --prefer-offline --no-audit && npm run build"
 
 [context.branch-deploy]
-  command = "npm install --prefer-offline --no-audit && npm run build"
+  command = "npm ci --prefer-offline --no-audit && npm run build"
 
 # === REDIRECTS PARA API ===
 [[redirects]]
