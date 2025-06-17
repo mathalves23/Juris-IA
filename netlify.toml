@@ -1,6 +1,6 @@
 [build]
   base = "frontend/"
-  publish = "frontend/build"
+  publish = "build"
   command = "npm ci --prefer-offline --no-audit && npm run build"
 
 [build.environment]
@@ -26,13 +26,13 @@
 
 # === CONFIGURAÇÕES DE CONTEXTO ===
 [context.production]
-  command = "cd frontend && npm ci --prefer-offline --no-audit && npm run build"
+  command = "npm ci --prefer-offline --no-audit && npm run build"
 
 [context.deploy-preview]
-  command = "cd frontend && npm ci --prefer-offline --no-audit && npm run build"
+  command = "npm ci --prefer-offline --no-audit && npm run build"
 
 [context.branch-deploy]
-  command = "cd frontend && npm ci --prefer-offline --no-audit && npm run build"
+  command = "npm ci --prefer-offline --no-audit && npm run build"
 
 # === REDIRECTS PARA API ===
 [[redirects]]
